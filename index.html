@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <title>Городской навигатор</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header__wrap">
+            <div class="header__logo">
+                <img src="./assets/img/logo_bl.svg" alt="logo" class="header__logo-pic">
+                <a href="./index.html" class="header__logo-link"><p class="header__logo-text">Городской навигатор</p></a>
+            </div>
+            <nav class="header__menu">
+                <ul class="header__menu-list">
+                    <li class="header__menu-item">
+                        <a href="./contact.html" class="header__link">Контакты</a>
+                    </li>
+                    <li class="header__menu-item">
+                        <a href="./sight.html" class="header__link">Достопримечательности</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="burger__menu">
+                <div class="burger__icon" id="burgerIcon">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <div class="burger__menu-items" id="menuItems">
+                    <a href="./contact.html">Контакты</a>
+                    <a href="./sight.html">Достопримечательности</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="main">
+    </div>
+    <section class="slider">
+        <div class="slider__container">
+            <div class="slider__top">
+                <h2 class="slider__top-title title">Набережные Челны</h2>
+                <p class="slider__top-text">Достопримечательности</p>
+            </div>
+            <div class="slider__wrap">
+                <img class="slider__slide" src="./assets/img/slider1.png" alt="First">
+                <img class="slider__slide" src="./assets/img/slider2.png" alt="Second">
+                <img class="slider__slide" src="./assets/img/slider3.png" alt="Third">
+                <img class="slider__slide" src="./assets/img/slider4.png" alt="Fourth">
+            </div>
+            <div class="slider__nav">
+                <button type="button" class="slider__nav-back"><img src="./assets/img/arrow-left.svg" alt="arrow_left" class="slider__nav-pic"></button>
+                <button type="button" class="slider__nav-next"><img src="./assets/img/arrow-right.svg" alt="arrow_right" class="slider__nav-pic"></button>
+            </div>
+        </div>
+    </section>
+    <section class="description">
+        <div class="description__wrap">
+            <h2 class="description__title title">Описание города</h2>
+            <div class="discription__blocks">
+                <div class="description__row">
+                    <div class="discription__block description__block-tx"><p class="description__block-text">В Набережных Челнах  жилые массивы города и его деловые районы отделены друг от друга парками и широкими проспектами, которые украшают зелёные аллеи и клумбы.</p></div>
+                    <div class="discription__block description__block-pic"><img src="./assets/img/micro_bg1.png" alt="city" class="description__block-pic"></div>
+                    <div class="discription__block description__block-tx"><p class="description__block-text">Микрорайоны называются комплексами. Такая традиция возникла благодаря быстрому расширению территории Челнов: микрорайоны строились в 70-е годы одновременно.</p></div>
+                </div>    
+                <div class="description__row">
+                    <div class="discription__block description__block-pic"><img src="./assets/img/micro_bg2.png" alt="church" class="description__block-pic"></div>
+                    <div class="discription__block description__block-tx"><p class="description__block-text">Город окружён зелёными зонами: с одной стороны Боровецкий лес, а если переехать по мосту через Каму, можно попасть в национальный парк «Нижняя Кама».</p></div>
+                    <div class="discription__block description__block-pic"><img src="./assets/img/micro_bg3.png" alt="monument" class="description__block-pic"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="map">
+        <div class="map__wrap">
+            <div class="map__top">
+                <p class="map__title title">Набережные Челны на карте</p>
+            </div>
+            <div class="map__yandex">
+                <div style="position:relative;overflow:hidden;" class="map__yandex-int"><a href="https://yandex.ru/maps/geo/naberezhnyye_chelny/53105093/?ll=52.366194%2C55.712530&utm_medium=mapframe&utm_source=maps&z=11.75" style="color:#eee;font-size:12px;position:absolute;top:14px;">Набережные Челны — Яндекс Карты</a><iframe src="https://yandex.ru/map-widget/v1/?ll=52.366194%2C55.712530&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1MzEwNTA5MxJr0KDQvtGB0YHQuNGPLCDQoNC10YHQv9GD0LHQu9C40LrQsCDQotCw0YLQsNGA0YHRgtCw0L0gKNCi0LDRgtCw0YDRgdGC0LDQvSksINCd0LDQsdC10YDQtdC20L3Ri9C1INCn0LXQu9C90YsiCg1anVFCFRD3XkI%2C&z=11.75"allowfullscreen="true" class="map__yandex-iframe"></iframe></div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer__wrap">
+            <div class="footer__logo">
+                <a href="./index.html">
+                    <div class="footer__logo-block">
+                        <img src="./assets/img/logo_wh.svg" alt="logo" class="footer__logo-pic">
+                        <p class="footer__logo-title">Городской Навигатор</p>
+                    </div>
+                    <p class="footer__logo-subtitle">©2024 Городской Навигатор</p>
+                </a>
+            </div>
+            <div class="footer__contact">
+                <a href="./contact.html" class="footer_contact-link"><p class="footer__contact-title">Контакты</p></a>
+                <div class="footer__contact-wrap">
+                    <div class="footer__contact-block">
+                        <a href="https://t.me/butterbrodyt" class="footer__contact-link">
+                            <img src="./assets/img/TG.svg" alt="telegram" class="footer__contact-pic">
+                            <p class="footer__contact-text">Telegram</p>
+                        </a>
+                    </div>
+                    <div class="footer__contact-block">
+                        <a href="https://vk.com/mc_max1939" class="footer__contact-link">
+                            <img src="./assets/img/VK.svg" alt="Vkontakte" class="footer__contact-pic">
+                            <p class="footer__contact-text">Vkontakte</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__politics">
+                <a href="#" class="footer__politics-link"><p class="footer__politics-text">Политика Конфиденциальности</p></a>
+                <a href="#" class="footer__politics-link"><p class="footer__politics-text">Правила и Условия</p></a>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p class="footer__bottom-text">Site by BTT</p>
+        </div>
+    </footer>
+    <script src="./assets/js/index.js"></script>
+</body>
+</html>
