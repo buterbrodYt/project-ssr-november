@@ -265,7 +265,6 @@ li {
   width: 100%;
   height: auto;
   margin: 0 auto;
-  display: none;
 }
 .sight__items-card {
   width: 80%;
@@ -276,7 +275,7 @@ li {
   flex-direction: column;
   align-items: center;
   background-color: #6c757d;
-  border-radius: 100px;
+  border-radius: 75px;
 }
 @media (max-width: 480px) {
   .sight__items-card {
@@ -294,7 +293,7 @@ li {
 .sight__items-card-pic {
   width: 100%;
   height: 100%;
-  border-radius: 15px;
+  border-radius: 0 0 15px 15px;
 }
 .sight__items-card-back {
   position: absolute;

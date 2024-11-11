@@ -13,115 +13,66 @@ document.getElementById("burgerIcon").addEventListener("click", function () {
   }
 });
 
-// Поиск
+const apiUrl = "https://67266547302d03037e6d6bc0.mockapi.io/v1/sight-card";
 
-document.addEventListener("DOMContentLoaded", function () {
-  const items = document.getElementById("items").children;
-  const searchInput = document.getElementById("search__input");
-  const categorySelect = document.getElementById("category__select");
-  const prevPageButton = document.getElementById("prevPage");
-  const nextPageButton = document.getElementById("nextPage");
-  const pageInfo = document.getElementById("pageInfo");
-
-  let currentPage = 1;
-  const itemsPerPage = 10;
-  let filteredItems = [];
-
-  // Восстановление сохраненной категории из localStorage
-  const savedCategory = localStorage.getItem("selectedCategory");
-  if (savedCategory) {
-    categorySelect.value = savedCategory;
+// Функция для получения данных с API
+(async function fetchData() {
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error("Ошибка сети");
+    }
+    const data = await response.json();
+    displayData(data);
+  } catch (error) {
+    console.error("Ошибка при получении данных:", error);
   }
+})();
 
-  // Восстановление сохраненной текущей страницы из localStorage
-  const savedPage = localStorage.getItem("currentPage");
-  if (savedPage) {
-    currentPage = parseInt(savedPage);
-  }
+// Функция для отображения данных на странице
+function displayData(data) {
+  const sight = document.getElementById("data-container");
+  sight.innerHTML = ""; // Очищаем контейнер перед добавлением новых данных
 
-  function filterItems() {
-    const searchTerm = searchInput.value.toLowerCase();
-    const selectedCategory = categorySelect.value;
+  data.forEach((item) => {
+    const card = document.createElement("li");
+    card.classList.add("sight__items-item");
+    card.setAttribute("data-category", item.category);
+    card.setAttribute("ID", item.id);
 
-    localStorage.setItem("selectedCategory", selectedCategory);
+    const wrap = document.createElement("div");
+    wrap.classList.add("sight__items-card");
 
-    filteredItems = Array.from(items).filter((item) => {
-      const title = item
-        .querySelector(".sight__items-card-title")
-        .textContent.toLowerCase();
-      const categories = item.getAttribute("data-category").split(" ");
+    const title = document.createElement("h2");
+    title.textContent = item.title;
+    title.classList.add("sight__items-card-title");
+    wrap.appendChild(title);
 
-      const matchSearch = title.includes(searchTerm);
-      const matchCategory =
-        selectedCategory === "all" || categories.includes(selectedCategory);
+    const wrap_block = document.createElement("div");
+    wrap_block.classList.add("sight__items-card-block");
+    wrap.appendChild(wrap_block);
 
-      return matchSearch && matchCategory;
-    });
+    const image = document.createElement("img");
+    image.src = item.image;
+    image.alt = item.title;
+    image.classList.add("sight__items-card-pic");
+    wrap_block.appendChild(image);
 
-    // Если не найдено подходящих элементов выводит только первый элемент
-    if (filteredItems.length === 0) {
-      filteredItems = [items[0]];
-    }
+    const description_block = document.createElement("div");
+    wrap_block.appendChild(description_block);
+    description_block.classList.add("sight__items-card-back");
 
-    currentPage = 1; // После фильтрации переход к 1 странице
-    updatePagination();
-  }
+    const description = document.createElement("p");
+    description.textContent = item.description;
+    description_block.appendChild(description);
+    description.classList.add("sight__items-card-text");
 
-  // Обновление пагинации
-  function updatePagination() {
-    const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+    const adress = document.createElement("p");
+    adress.textContent = item.adress;
+    adress.classList.add("sight__items-card-adres")
+    wrap_block.appendChild(adress);
 
-    if (currentPage > totalPages) {
-      currentPage = totalPages;
-    }
-
-    const start = (currentPage - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-
-    // Скрытие всех элементов
-    for (let i = 0; i < items.length; i++) {
-      items[i].style.display = "none";
-    }
-
-    // Отображение отфильтрованных элементов
-    for (let i = start; i < end && i < filteredItems.length; i++) {
-      filteredItems[i].style.display = "block";
-    }
-
-    // Кнопки пагинации и номер текущей страницы
-    pageInfo.textContent = `${currentPage}`;
-    prevPageButton.disabled = currentPage === 1;
-    nextPageButton.disabled = currentPage === totalPages;
-
-    // Сохранение текущей страницы в localStorage
-    localStorage.setItem("currentPage", currentPage);
-
-    // Скролл к началу страницы
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }
-
-  searchInput.addEventListener("input", filterItems);
-  categorySelect.addEventListener("change", filterItems);
-
-  // Переход к предыдущей странице
-  prevPageButton.addEventListener("click", () => {
-    if (currentPage > 1) {
-      currentPage--;
-      updatePagination();
-    }
+    card.appendChild(wrap);
+    sight.appendChild(card);
   });
-
-  // Переход к следующей странице
-  nextPageButton.addEventListener("click", () => {
-    const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
-    if (currentPage < totalPages) {
-      currentPage++;
-      updatePagination();
-    }
-  });
-
-  filterItems();
-});
+}
