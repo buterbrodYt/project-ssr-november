@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/sight.css">
+</head>
+<body>
+    <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -49,12 +58,15 @@
         </div>
     </section>
     <section class="sight">
-        <ul id="items" class="sight__items">
+        <ul id="data_container" class="sight__items">
         </ul>
+        <button id="showMoreButton" >Показать еще</button>
         <div id="pagination">
-            <button id="prevPage"><img src="./assets/img/left-arrow.svg" alt="arrow"></button>
-            <span id="pageInfo"><img src="./assets/img/circle.svg" alt="circle"></span>
-            <button id="nextPage"><img src="./assets/img/right-arrow.svg" alt="arrow"></button>
+            <button id="firstPage"><img src="./assets/img/Chevrons_double_left.svg" alt="double_left"></button>
+            <button id="nowPage-1" class="pagination__text "></button>
+            <span id="nowPage" class="pagination__text pagination__text-main"></span>
+            <button id="nowPage+1" class="pagination__text "></button>
+            <button id="lastPage"><img src="./assets/img/Chevrons_double_right.svg" alt="right"></button>
         </div>
     </section>
     <footer class="footer">
@@ -94,5 +106,6 @@
             <p class="footer__bottom-text">Site by BTT</p>
         </div>
     </footer>
-    <script src="./assets/js/sight.js" defer></script>
+    <script src="./assets/js/sight.js"></script>
 </body>
+</html>

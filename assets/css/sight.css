@@ -25,6 +25,11 @@ li {
   list-style: none;
 }
 
+.close {
+  cursor: not-allowed;
+  opacity: 0.1;
+}
+
 .header {
   background-color: #6c757d;
   margin: 20px 50px;
@@ -370,29 +375,41 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 15px;
   margin-bottom: 30px;
+}
+
+#showMoreButton {
+  cursor: pointer;
+  padding: 10px 20px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  border-radius: 15px;
+  border: none;
+  background-color: #EDF2F8;
+  color: #343a40;
+  font-size: 16px;
+}
+
+.pagination__text {
+  font-size: 24px;
   color: #EDF2F8;
+  opacity: 0.8;
+}
+.pagination__text-main {
+  font-size: 28px;
+  vertical-align: top;
+  opacity: 1;
 }
 
 #pagination button {
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 20px;
-  font-size: 16px;
-  margin: 0 5px;
   cursor: pointer;
-  background-color: #343a40;
+  background-color: transparent;
   border: none;
 }
 
 #pagination button:disabled {
   cursor: not-allowed;
-}
-
-#pageInfo {
-  margin: 0 10px;
-  font-size: 24px;
 }
 
 .footer {
