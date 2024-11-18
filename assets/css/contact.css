@@ -13,7 +13,7 @@
 body {
   scrollbar-width: none;
   scrollbar-color: #000;
-  background: url(../img/bg_contact.png) no-repeat center center/cover;
+  background-color: #74839b;
 }
 
 a {
@@ -181,6 +181,7 @@ li {
 }
 .contact {
   margin: 0 auto;
+  background: url(../img/bg_contact.png) no-repeat center center/cover;
 }
 .contact__wrap {
   margin: 0 10px;

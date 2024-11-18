@@ -26,9 +26,7 @@ li {
 
 .header {
   background: url(../img/background_main.jpg) no-repeat center center/cover;
-  padding: 0 20px;
-  padding-top: 20px;
-  width: 100%;
+  padding: 20px 50px;
 }
 .header__wrap {
   margin: 0 auto;
@@ -92,13 +90,14 @@ li {
   border-radius: 15px;
 }
 .header__link:hover {
-  color: #BEB4AA;
+  color: #74839b;
 }
 
 .burger__menu {
   display: none;
   position: relative;
   margin-top: 15px;
+  margin-right: 10px;
   width: 60px;
   height: 40px;
 }
@@ -229,6 +228,8 @@ li {
   position: relative;
   width: 100vw;
   height: 100vh;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .slider__nav {
   position: absolute;
