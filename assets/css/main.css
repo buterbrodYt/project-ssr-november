@@ -13,7 +13,7 @@
 body {
   scrollbar-width: none;
   scrollbar-color: #000;
-  background-color: #343a40;
+  background-color: #74839b;
 }
 
 a {
@@ -25,9 +25,9 @@ li {
 }
 
 .header {
-  background-color: #6c757d;
+  background-color: #a9b6c3;
   margin: 20px 50px;
-  border-radius: 50px;
+  border-radius: 15px;
   padding: 0 20px;
 }
 .header__wrap {
@@ -62,7 +62,7 @@ li {
   font-weight: bold;
 }
 .header__logo-link {
-  color: #EDF2F8;
+  color: #06334b;
 }
 .header__menu {
   display: flex;
@@ -85,12 +85,12 @@ li {
   font-weight: 600;
 }
 .header__link {
-  color: #EDF2F8;
+  color: #06334b;
   padding: 10px;
   border-radius: 15px;
 }
 .header__link:hover {
-  color: #BEB4AA;
+  color: #74839b;
 }
 
 .burger__menu {
@@ -109,7 +109,7 @@ li {
   display: none;
   position: absolute;
   right: 0;
-  background-color: #343a40;
+  background-color: #74839b;
   border-radius: 4px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 250px;
@@ -120,39 +120,41 @@ li {
 }
 .burger__menu-items a {
   display: block;
-  color: #343a40;
-  color: #EDF2F8;
+  color: #74839b;
+  color: #06334b;
   text-decoration: none;
   padding: 10px 20px;
   text-align: center;
   transition: background-color 0.3s ease;
 }
 .burger__menu-items a:hover {
-  background-color: #98ACC0;
+  background-color: #a9b6c3;
   border-radius: 4px;
 }
 .burger__icon {
+  transition: transform 0.3s ease;
   cursor: pointer;
   padding: 10px;
-  background-color: #343a40;
+  background-color: #74839b;
   width: 60px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   border-radius: 10px;
-  transition: transform 0.3s ease;
 }
 .burger__icon.open {
   transform: rotate(90deg);
+  height: 40px;
+  width: 40px;
 }
 .burger__icon.open .bar:nth-child(1) {
-  transform: translateY(10px) rotate(45deg);
+  transform: translateY(9px) rotate(45deg);
 }
 .burger__icon.open .bar:nth-child(2) {
   opacity: 0;
 }
 .burger__icon.open .bar:nth-child(3) {
-  transform: translateY(-10px) rotate(-45deg);
+  transform: translateY(-9px) rotate(-45deg);
 }
 
 .bar {
@@ -203,7 +205,7 @@ li {
   }
 }
 .slider__top-title {
-  color: #EDF2F8;
+  color: #06334b;
   margin-bottom: 30px;
   font-size: 43px;
   font-weight: 500;
@@ -211,7 +213,7 @@ li {
 }
 .slider__top-text {
   font-size: 20px;
-  color: #5884BF;
+  color: #BEB4AA;
   font-weight: 500;
   margin-bottom: 50px;
 }
@@ -286,7 +288,7 @@ li {
   font-weight: 500;
   width: 350px;
   font-size: 43px;
-  color: #EDF2F8;
+  color: #06334b;
 }
 @media (max-width: 420px) {
   .description__title {
@@ -316,7 +318,7 @@ li {
 .description__block-tx {
   display: flex;
   align-items: center;
-  background-color: #98ACC0;
+  background-color: #a9b6c3;
   width: 450px;
   height: auto;
   border-radius: 15px;
@@ -330,7 +332,7 @@ li {
 .description__block-pic {
   display: flex;
   align-items: center;
-  background-color: #98ACC0;
+  background-color: #a9b6c3;
   height: auto;
   border-radius: 15px;
 }
@@ -345,7 +347,7 @@ li {
   }
 }
 .description__block-text {
-  color: #EDF2F8;
+  color: #06334b;
   font-size: 28px;
   font-weight: 500;
   text-align: center;
@@ -369,7 +371,7 @@ li {
   text-align: center;
   font-size: 43px;
   font-weight: 500;
-  color: #EDF2F8;
+  color: #06334b;
 }
 .map__top {
   display: flex;
@@ -405,7 +407,7 @@ li {
 }
 
 .footer {
-  background-color: #191B1E;
+  background-color: #06334b;
 }
 .footer__wrap {
   margin: 0 75px;
@@ -439,7 +441,7 @@ li {
   }
 }
 .footer__logo-title {
-  color: #EDF2F8;
+  color: #a9b6c3;
   font-size: 24px;
   font-weight: 500;
   text-align: right;
@@ -457,7 +459,7 @@ li {
   }
 }
 .footer__logo-subtitle {
-  color: #EDF2F8;
+  color: #a9b6c3;
   font-size: 16px;
   text-align: center;
 }
@@ -497,12 +499,12 @@ li {
   }
 }
 .footer__contact-title {
-  color: #EDF2F8;
+  color: #a9b6c3;
   font-size: 20px;
   margin-bottom: 15px;
 }
 .footer__contact-link {
-  color: #EDF2F8;
+  color: #a9b6c3;
   font-size: 20px;
   margin-bottom: 15px;
   display: flex;
@@ -517,7 +519,7 @@ li {
 .footer__contact-block {
   display: flex;
   gap: 5px;
-  color: #EDF2F8;
+  color: #a9b6c3;
 }
 .footer__politics {
   display: flex;
@@ -530,7 +532,7 @@ li {
   }
 }
 .footer__politics-link {
-  color: #EDF2F8;
+  color: #a9b6c3;
 }
 .footer__politics-text {
   font-size: 20px;
@@ -541,12 +543,12 @@ li {
   }
 }
 .footer__bottom {
-  background-color: #191B1E;
+  background-color: #06334b;
   height: 20px;
 }
 .footer__bottom-text {
   margin-right: 75px;
   float: right;
-  color: #343a40;
-  background-color: #191B1E;
+  color: #74839b;
+  background-color: transparent;
 }

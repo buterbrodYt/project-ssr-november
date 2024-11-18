@@ -3,10 +3,10 @@
     src: url(../fonts/Roboto-Regular.ttf);
 }
 
-$background_color:#343a40;
-$main_color:#EDF2F8;
-$block_color:#98ACC0;
-$second_block_color:#5884BF;
+$background_color:#74839b;
+$main_color:#06334b;
+$block_color:#a9b6c3;
+$second_block_color:#7a8ea1;
 $bej_color:#BEB4AA;
 
 * {
@@ -17,11 +17,10 @@ $bej_color:#BEB4AA;
     font-family: roboto;
 }
 
-
 body {
     scrollbar-width: none;
     scrollbar-color: #000;
-    background: url(../img/bg_contact.png) no-repeat center center / cover;
+    background-color: $background_color;
 }
 
 a {
@@ -35,9 +34,9 @@ li {
 
 
 .header {
-    background-color: #6c757d;
+    background-color: $block_color;
     margin: 20px 50px;
-    border-radius: 50px;
+    border-radius: 15px;
     padding: 0 20px;
 
     &__wrap {
@@ -107,7 +106,7 @@ li {
     }
 
     &__link:hover {
-        color: $bej_color;
+        color: $background_color;
     }
 }
 
@@ -155,6 +154,7 @@ li {
     }
 
     &__icon {
+        transition: transform 0.3s ease;
         cursor: pointer;
         padding: 10px;
         background-color: $background_color;
@@ -163,12 +163,13 @@ li {
         flex-direction: column;
         justify-content: space-around;
         border-radius: 10px;
-        transition: transform 0.3s ease;
         &.open {
             transform: rotate(90deg);
+            height: 40px;
+            width: 40px;
 
             & .bar:nth-child(1)  {
-                transform: translateY(10px) rotate(45deg);
+                transform: translateY(9px) rotate(45deg);
             }
 
             & .bar:nth-child(2) {
@@ -176,7 +177,7 @@ li {
             }
 
             & .bar:nth-child(3) {
-                transform: translateY(-10px) rotate(-45deg);
+                transform:translateY(-9px) rotate(-45deg);
             }
         }
         
@@ -209,7 +210,8 @@ li {
 
 .contact {
     margin: 0 auto;
-
+    background: url(../img/bg_contact.png) no-repeat center center / cover;
+    
     &__wrap {
         margin: 0 10px;
         margin-right: 15%;
@@ -296,7 +298,7 @@ li {
     background-color: rgba(42, 46, 49, 0.5);
 
     &__wrap {
-        background: url(../img/social.png) center center no-repeat;
+        background: url(../img/social.png) no-repeat center center / cover;
         border: 10px solid $background_color;
         border-radius: 30px;
         width: 50%;
@@ -313,7 +315,7 @@ li {
     }
 
     &__content {
-        background-color: $background_color;
+        background-color: $block_color;
         color: $main_color;
         margin: 15% auto;
         padding: 20px;
@@ -367,17 +369,17 @@ button[type="submit"] {
     padding: 10px;
     background-color: $main_color;
     border-radius: 15px;
-    color: $background_color;
+    color: $block_color;
     border: none;
     cursor: pointer;
 }
 
 button[type="submit"]:hover {
-    background-color: $block_color;
+    background-color: $second_block_color;
 }
 
 .footer {
-    background-color: #191B1E;
+    background-color: $main_color;
 
     &__wrap {
         margin: 0 75px;
@@ -415,7 +417,7 @@ button[type="submit"]:hover {
         }
 
         &-title {
-            color: $main_color;
+            color: $block_color;
             font-size: 24px;
             font-weight: 500;
             text-align: right;
@@ -432,7 +434,7 @@ button[type="submit"]:hover {
         }
 
         &-subtitle {
-            color: $main_color;
+            color: $block_color;
             font-size: 16px;
             text-align: center;
 
@@ -471,13 +473,13 @@ button[type="submit"]:hover {
         }
 
         &-title {
-            color: $main_color;
+            color: $block_color;
             font-size: 20px;
             margin-bottom: 15px;
         }
 
         &-link {
-            color: $main_color;
+            color: $block_color;
             font-size: 20px;
             margin-bottom: 15px;
             display: flex;
@@ -494,7 +496,7 @@ button[type="submit"]:hover {
         &-block {
             display: flex;
             gap: 5px;
-            color: $main_color;
+            color: $block_color;
         }
     }
 
@@ -508,7 +510,7 @@ button[type="submit"]:hover {
         }
 
         &-link {
-        color: $main_color;
+        color: $block_color;
         }
 
         &-text {
@@ -521,14 +523,14 @@ button[type="submit"]:hover {
     }
 
     &__bottom{
-        background-color: #191B1E;
+        background-color: $main_color;
         height: 20px;
 
         &-text {
         margin-right: 75px;
         float: right;
         color: $background_color;
-        background-color: #191B1E;
+        background-color: transparent;
         }
     }
 }

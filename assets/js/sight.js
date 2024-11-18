@@ -52,7 +52,6 @@ function DisplayingServer() {
       const card = document.createElement("li");
       card.classList.add("sight__items-item");
       card.setAttribute("data-category", item.category);
-      card.setAttribute("ID", item.id);
 
       const wrap = document.createElement("div");
       wrap.classList.add("sight__items-card");
@@ -62,12 +61,18 @@ function DisplayingServer() {
       title.classList.add("sight__items-card-title");
       wrap.appendChild(title);
 
+      const a = document.createElement("a");
+      a.href = "./sight-card.html";
+      a.classList.add("sight__items-link");
+      a.setAttribute("id", item.id);
+      wrap.appendChild(a);
+
       const wrap_block = document.createElement("div");
       wrap_block.classList.add("sight__items-card-block");
-      wrap.appendChild(wrap_block);
+      a.appendChild(wrap_block);
 
       const image = document.createElement("img");
-      image.src = item.image;
+      image.src = item.image1;
       image.alt = item.title;
       image.classList.add("sight__items-card-pic");
       wrap_block.appendChild(image);
@@ -88,8 +93,15 @@ function DisplayingServer() {
 
       card.appendChild(wrap);
       sight.appendChild(card);
-    });
+    })
 
+    sight.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", function(event) {
+        event.preventDefault();
+        localStorage.setItem("savedId", a.getAttribute("id"));
+        window.location.href = a.href;
+      });
+    });
     updatePagination(data);
   }
 
@@ -113,13 +125,13 @@ function DisplayingServer() {
       firstPage.disabled = false;
     }
 
-    const showMoreButton = document.getElementById("showMoreButton");
+    const showMore = document.getElementById("showMoreButton");
     if (currentPage < totalPages) {
-      showMoreButton.style.display = "block";
+      showMore.style.display = "block";
       notnowPage2.style.display = "block";
       lastPage.disabled = false;
     } else {
-      showMoreButton.style.display = "none";
+      showMore.style.display = "none";
       notnowPage2.style.display = "none";
       lastPage.disabled = true;
     }
@@ -127,13 +139,13 @@ function DisplayingServer() {
 
    // Кнопки пагинации
    function Buttons() {
-    const showMoreButton = document.getElementById("showMoreButton");
+    const showMore = document.getElementById("showMoreButton");
     const firstPage = document.getElementById("firstPage");
     const lastPage = document.getElementById("lastPage");
     const notnowPage1 = document.getElementById("nowPage-1");
     const notnowPage2 = document.getElementById("nowPage+1");
 
-    showMoreButton.addEventListener("click", () => {
+    showMore.addEventListener("click", () => {
       currentPage++;
       localStorage.setItem("savedPage", currentPage);
       displayData(allData);
@@ -185,6 +197,7 @@ function DisplayingServer() {
   }
 
   // Поиск и фильтрация
+
   function filteringAndSearching() {
     document.getElementById("data_container").innerHTML = "";
     const searchInput = document.getElementById("search__input").value.toLowerCase();
@@ -218,13 +231,14 @@ function DisplayingServer() {
   document.getElementById("search__input").addEventListener("input", filteringAndSearching);
   document.getElementById("category__select").addEventListener("change", filteringAndSearching);
 
+  // При неизвестном поисковом
+
   function unknownSearchQuery() {
     const sight = document.getElementById("data_container");
     sight.innerHTML = "";
     const card = document.createElement("li");
     card.classList.add("sight__items-item");
     card.setAttribute("data-category", "unknow");
-    card.setAttribute("ID", -1);
 
     const wrap = document.createElement("div");
     wrap.classList.add("sight__items-card");
@@ -251,4 +265,16 @@ function DisplayingServer() {
   Buttons();
 }
 
+// Лоадер
+
+window.onload = function() {
+  let preloader = document.getElementById('loader');
+  let bg = document.getElementById("loading")
+  preloader.classList.add('hide-loader');
+  bg.classList.add('hide-loader');
+  setInterval(function() {
+    preloader.classList.add('loader-hidden');
+    bg.classList.add('loader-hidden');
+  }, 2500);
+}
 DisplayingServer();
