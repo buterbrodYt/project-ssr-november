@@ -25,15 +25,17 @@ li {
 }
 
 .header {
-  background-color: #a9b6c3;
-  margin: 20px 50px;
-  border-radius: 15px;
+  background: url(../img/background_main.jpg) no-repeat center center/cover;
   padding: 0 20px;
+  padding-top: 20px;
+  width: 100%;
 }
 .header__wrap {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  background-color: #a9b6c3;
+  border-radius: 15px;
 }
 .header__logo {
   display: flex;
@@ -90,7 +92,7 @@ li {
   border-radius: 15px;
 }
 .header__link:hover {
-  color: #74839b;
+  color: #BEB4AA;
 }
 
 .burger__menu {
@@ -182,7 +184,6 @@ li {
 .main {
   height: 80vh;
   margin: 0;
-  background: url(../img/background_main.jpg) no-repeat center center/cover;
   margin-bottom: 70px;
 }
 

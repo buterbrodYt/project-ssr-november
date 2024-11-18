@@ -33,15 +33,17 @@ li {
 
 
 .header {
-    background-color: $block_color;
-    margin: 20px 50px;
-    border-radius: 15px;
+    background: url(../img/background_main.jpg) no-repeat center center / cover;
     padding: 0 20px;
+    padding-top: 20px;
+    width: 100%;
 
     &__wrap {
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
+        background-color: $block_color;
+        border-radius: 15px;
     }
 
     &__logo {
@@ -105,7 +107,7 @@ li {
     }
 
     &__link:hover {
-        color: $background_color;
+        color: $bej_color;
     }
 }
 
@@ -210,7 +212,6 @@ li {
 .main {
     height: 80vh;
     margin: 0;
-    background: url(../img/background_main.jpg) no-repeat center center / cover;
     margin-bottom: 70px;
 }
 
