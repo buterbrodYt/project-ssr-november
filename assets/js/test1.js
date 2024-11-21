@@ -81,11 +81,11 @@ window.addEventListener('load' , function() {
 
 document.getElementById("map_btton").addEventListener("click", function() {
   document.getElementById("map_yandex").style.display = "block";
-  document.getElementById("map_yandex").style.animation = "fade 0.5s ease";
+  document.getElementById("map_yandex").style.animation = "fade 1s ease";
   document.getElementById("back").style.display = "block";
-  document.getElementById("back").style.animation = "fade 0.5s ease";
+  document.getElementById("back").style.animation = "fade 1s ease";
   document.getElementById("close").style.display = "block";
-  document.getElementById("close").style.animation = "fade 0.5s ease";
+  document.getElementById("close").style.animation = "fade 1s ease";
   document.body.style.overflow = "hidden"
 })
 
@@ -93,5 +93,5 @@ document.getElementById("close").addEventListener("click", function() {
   document.getElementById("map_yandex").style.display = "none";
   document.getElementById("back").style.display = "none";
   document.getElementById("close").style.display = "none";
-  document.body.style.overflow = ""
+  document.body.style.overflow = "visible"
 })

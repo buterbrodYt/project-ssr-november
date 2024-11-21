@@ -13,7 +13,7 @@
 body {
   scrollbar-width: none;
   scrollbar-color: #000;
-  background-color: #74839b;
+  background-color: #d3e0ed;
 }
 
 a {
@@ -32,7 +32,7 @@ li {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  background-color: #a9b6c3;
+  background-color: #d3e0ed;
   border-radius: 15px;
 }
 .header__logo {
@@ -45,11 +45,6 @@ li {
 @media (max-width: 540px) {
   .header__logo {
     margin-left: 20px;
-  }
-}
-@media (max-width: 420px) {
-  .header__logo {
-    margin-left: 0;
   }
 }
 .header__logo-pic {
@@ -130,7 +125,7 @@ li {
   transition: background-color 0.3s ease;
 }
 .burger__menu-items a:hover {
-  background-color: #a9b6c3;
+  background-color: #d3e0ed;
   border-radius: 4px;
 }
 .burger__icon {
@@ -292,6 +287,7 @@ li {
   width: 350px;
   font-size: 43px;
   color: #06334b;
+  text-align: center;
 }
 @media (max-width: 420px) {
   .description__title {
@@ -321,7 +317,7 @@ li {
 .description__block-tx {
   display: flex;
   align-items: center;
-  background-color: #a9b6c3;
+  background-color: #7a8ea1;
   width: 450px;
   height: auto;
   border-radius: 15px;
@@ -335,7 +331,7 @@ li {
 .description__block-pic {
   display: flex;
   align-items: center;
-  background-color: #a9b6c3;
+  background-color: #d3e0ed;
   height: auto;
   border-radius: 15px;
 }
@@ -354,6 +350,7 @@ li {
   font-size: 28px;
   font-weight: 500;
   text-align: center;
+  padding: 10px;
 }
 
 .map {
@@ -444,7 +441,7 @@ li {
   }
 }
 .footer__logo-title {
-  color: #a9b6c3;
+  color: #d3e0ed;
   font-size: 24px;
   font-weight: 500;
   text-align: right;
@@ -462,7 +459,7 @@ li {
   }
 }
 .footer__logo-subtitle {
-  color: #a9b6c3;
+  color: #d3e0ed;
   font-size: 16px;
   text-align: center;
 }
@@ -502,12 +499,12 @@ li {
   }
 }
 .footer__contact-title {
-  color: #a9b6c3;
+  color: #d3e0ed;
   font-size: 20px;
   margin-bottom: 15px;
 }
 .footer__contact-link {
-  color: #a9b6c3;
+  color: #d3e0ed;
   font-size: 20px;
   margin-bottom: 15px;
   display: flex;
@@ -522,7 +519,7 @@ li {
 .footer__contact-block {
   display: flex;
   gap: 5px;
-  color: #a9b6c3;
+  color: #d3e0ed;
 }
 .footer__politics {
   display: flex;
@@ -535,7 +532,7 @@ li {
   }
 }
 .footer__politics-link {
-  color: #a9b6c3;
+  color: #d3e0ed;
 }
 .footer__politics-text {
   font-size: 20px;

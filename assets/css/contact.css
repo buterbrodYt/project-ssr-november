@@ -25,7 +25,7 @@ li {
 }
 
 .header {
-  background-color: #a9b6c3;
+  background-color: #d3e0ed;
   margin: 20px 50px;
   border-radius: 15px;
   padding: 0 20px;
@@ -128,7 +128,7 @@ li {
   transition: background-color 0.3s ease;
 }
 .burger__menu-items a:hover {
-  background-color: #a9b6c3;
+  background-color: #d3e0ed;
   border-radius: 4px;
 }
 .burger__icon {
@@ -211,13 +211,16 @@ li {
     width: 100%;
   }
 }
-.contact__btn:active {
+.contact__btn :active {
   background-color: #06334b;
   color: #74839b;
 }
+.contact__btn:hover {
+  cursor: pointer;
+}
 .contact__social {
   padding: 30px;
-  background-color: rgba(169, 182, 195, 0.5);
+  background-color: rgba(211, 224, 237, 0.5);
   width: 520px;
   display: flex;
   flex-direction: column;
@@ -262,6 +265,7 @@ li {
   width: 100%;
   height: 100%;
   overflow: auto;
+  opacity: 1;
   background-color: rgba(42, 46, 49, 0.5);
 }
 .modal__wrap {
@@ -282,7 +286,7 @@ li {
   }
 }
 .modal__content {
-  background-color: #a9b6c3;
+  background-color: #d3e0ed;
   color: #06334b;
   margin: 15% auto;
   padding: 20px;
@@ -335,7 +339,7 @@ button[type=submit] {
   padding: 10px;
   background-color: #06334b;
   border-radius: 15px;
-  color: #a9b6c3;
+  color: #d3e0ed;
   border: none;
   cursor: pointer;
 }
@@ -379,7 +383,7 @@ button[type=submit]:hover {
   }
 }
 .footer__logo-title {
-  color: #a9b6c3;
+  color: #d3e0ed;
   font-size: 24px;
   font-weight: 500;
   text-align: right;
@@ -397,7 +401,7 @@ button[type=submit]:hover {
   }
 }
 .footer__logo-subtitle {
-  color: #a9b6c3;
+  color: #d3e0ed;
   font-size: 16px;
   text-align: center;
 }
@@ -437,12 +441,12 @@ button[type=submit]:hover {
   }
 }
 .footer__contact-title {
-  color: #a9b6c3;
+  color: #d3e0ed;
   font-size: 20px;
   margin-bottom: 15px;
 }
 .footer__contact-link {
-  color: #a9b6c3;
+  color: #d3e0ed;
   font-size: 20px;
   margin-bottom: 15px;
   display: flex;
@@ -457,7 +461,7 @@ button[type=submit]:hover {
 .footer__contact-block {
   display: flex;
   gap: 5px;
-  color: #a9b6c3;
+  color: #d3e0ed;
 }
 .footer__politics {
   display: flex;
@@ -470,7 +474,7 @@ button[type=submit]:hover {
   }
 }
 .footer__politics-link {
-  color: #a9b6c3;
+  color: #d3e0ed;
 }
 .footer__politics-text {
   font-size: 20px;

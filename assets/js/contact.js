@@ -16,10 +16,10 @@ document.getElementById("burgerIcon").addEventListener("click", function () {
 // Модальное окно с формой
 
 document.getElementById("openModalBtn").addEventListener("click", function () {
-  document.getElementById("modal").style.display = "block";
-
   document.getElementById("name").value = localStorage.getItem("name") || "";
   document.getElementById("phone").value = localStorage.getItem("phone") || "";
+  document.getElementById("modal").style.display = "block";
+  document.getElementById("modal").style.animation = "fadeIn 0.5s ease"
 });
 
 document

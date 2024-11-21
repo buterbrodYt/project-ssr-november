@@ -14,7 +14,8 @@
 body {
   scrollbar-width: none;
   scrollbar-color: #000;
-  background-color: #74839b;
+  background: url(../img/ff.jpg) no-repeat center center/cover;
+  background-attachment: fixed;
 }
 
 a {
@@ -33,7 +34,7 @@ li {
 #loading {
   width: 100vw;
   height: 100vh;
-  background-color: #a9b6c3;
+  background-color: #d3e0ed;
   position: fixed;
   top: 0;
   left: 0;
@@ -114,7 +115,7 @@ li {
   }
 }
 .header {
-  background-color: #a9b6c3;
+  background-color: #d3e0ed;
   margin: 20px 50px;
   border-radius: 15px;
   padding: 0 20px;
@@ -218,7 +219,7 @@ li {
   transition: background-color 0.3s ease;
 }
 .burger__menu-items a:hover {
-  background-color: #a9b6c3;
+  background-color: #d3e0ed;
   border-radius: 4px;
 }
 .burger__icon {
@@ -272,7 +273,7 @@ li {
 .search {
   margin: 30px 30% 50px 30%;
   padding: 5px 0;
-  background-color: #a9b6c3;
+  background-color: #d3e0ed;
   border-radius: 50px;
 }
 @media (max-width: 900px) {
@@ -311,8 +312,7 @@ li {
   height: 40px;
   width: 80%;
   border-radius: 30px;
-  background-color: #7a8ea1;
-  color: #06334b;
+  background-color: #b1b1b1;
   padding: 15px;
   font-size: 16px;
   font-weight: 500;
@@ -324,10 +324,10 @@ li {
   }
 }
 .search__input::-moz-placeholder {
-  color: #06334b;
+  color: #d3e0ed;
 }
 .search__input::placeholder {
-  color: #06334b;
+  color: #d3e0ed;
 }
 .search__input::after {
   content: "✕";
@@ -368,7 +368,7 @@ li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #a9b6c3;
+  background-color: #d3e0ed;
   border-radius: 15px;
 }
 @media (max-width: 480px) {
@@ -436,7 +436,7 @@ li {
   position: absolute;
   margin-top: -43px;
   padding: 10px;
-  color: #a9b6c3;
+  color: #d3e0ed;
 }
 @media (max-width: 520px) {
   .sight__items-card-adres {
@@ -477,7 +477,7 @@ li {
   border-radius: 15px;
   border: none;
   background-color: #06334b;
-  color: #a9b6c3;
+  color: #d3e0ed;
   font-size: 20px;
 }
 
@@ -536,7 +536,7 @@ li {
   }
 }
 .footer__logo-title {
-  color: #a9b6c3;
+  color: #d3e0ed;
   font-size: 24px;
   font-weight: 500;
   text-align: right;
@@ -554,7 +554,7 @@ li {
   }
 }
 .footer__logo-subtitle {
-  color: #a9b6c3;
+  color: #d3e0ed;
   font-size: 16px;
   text-align: center;
 }
@@ -594,12 +594,12 @@ li {
   }
 }
 .footer__contact-title {
-  color: #a9b6c3;
+  color: #d3e0ed;
   font-size: 20px;
   margin-bottom: 15px;
 }
 .footer__contact-link {
-  color: #a9b6c3;
+  color: #d3e0ed;
   font-size: 20px;
   margin-bottom: 15px;
   display: flex;
@@ -614,7 +614,7 @@ li {
 .footer__contact-block {
   display: flex;
   gap: 5px;
-  color: #a9b6c3;
+  color: #d3e0ed;
 }
 .footer__politics {
   display: flex;
@@ -627,7 +627,7 @@ li {
   }
 }
 .footer__politics-link {
-  color: #a9b6c3;
+  color: #d3e0ed;
 }
 .footer__politics-text {
   font-size: 20px;

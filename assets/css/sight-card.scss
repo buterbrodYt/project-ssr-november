@@ -5,7 +5,7 @@
 
 $background_color:#74839b;
 $main_color:#06334b;
-$block_color:#a9b6c3;
+$block_color:#d3e0ed;
 $second_block_color:#7a8ea1;
 $bej_color:#BEB4AA;
 
@@ -21,7 +21,8 @@ body {
     height: 100%;
     scrollbar-width: none;
     scrollbar-color: #000;
-    background-color: $background_color;
+    background: url(../img/ff.jpg) no-repeat center center / cover;
+    background-attachment: fixed;
 }
 
 a {
@@ -398,14 +399,14 @@ li {
         &-title {
             margin-top: 25px;
             margin-bottom: 50px;
-            color: $main_color;
+            color: #fff;
             font-size: 32px;
             font-weight: 800;
+            text-align: center;
         }
 
         &-text {
-            padding-top: 20px;
-            padding-bottom: 30px;
+            padding: 20px 10px 30px 10px;
             border-radius: 25px 25px 0 0;
             background-color: $block_color;
             width: 80%;
@@ -478,7 +479,11 @@ li {
     &__yandex {
         display: none;
         position: fixed;
-        top: 100px;
+        top: 0;
+
+        @media (max-width:630px) {
+            top: calc((100vh - 100vw)/4);
+        }
 
         &-wrap {
             position:relative;
@@ -486,9 +491,14 @@ li {
         }
 
         &-iframe {
-            width: 800px;
-            height: 800px;
+            width: 100vh;
+            height: 100vh;
             border-radius: 50%;
+
+            @media (max-width:630px) {
+                width: 100vw;
+                height: 100vw;
+            }
         }
     }
 }
@@ -497,6 +507,7 @@ li {
     display: none;
     position: fixed;
     top: 0;
+    right: 0;
     width: 100vw;
     height: 150vh;
     background-color: rgba(0, 0, 0, 0.6);
@@ -504,11 +515,19 @@ li {
 #close {
     display: none;
     top: 50px;
-    left: 95%;
+    right: 2%;
     position: fixed;
     width: 60px;
     height: 60px;
     cursor: pointer;
+    background-color: transparent;
+    border: none;
+    overflow: visible;
+    z-index: 10;
+
+    @media (max-width:426px) {
+        top: 0px;
+    }
 }
 .closes {
     position: absolute;
@@ -516,13 +535,13 @@ li {
     width: 5px;
     height: 60px;
     border-radius: 15px;
-    opacity: 1;
+
     &:first-child {
-        transform: rotate(45deg);
+        transform: rotate(45deg) translateY(-40px);
     }
 
     &:last-child {
-        transform: rotate(-45deg);
+        transform: rotate(-45deg) translateX(40px);
     }
 }
 
