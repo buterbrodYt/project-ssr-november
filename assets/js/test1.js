@@ -28,70 +28,46 @@ if (!id) {
     }
     data = await response.json();
     displayData(data);
-
   } catch (error) {
     console.error("Ошибка при получении данных:", error);
   }
 })();
 
 function displayData(data) {
-  const sight = document.getElementById("data_container");
-  const card = document.createElement("li");
-  card.classList.add("sight__items-item");
-  card.setAttribute("data-category", data.category);
-  card.setAttribute("ID", data.id);
-
-  const wrap = document.createElement("div");
-  wrap.classList.add("sight__items-card");
-
-  const title = document.createElement("h2");
+  const title = document.getElementById("sight_title");
   title.textContent = data.title;
-  title.classList.add("sight__items-card-title");
-  wrap.appendChild(title);
 
-  const wrap_block = document.createElement("div");
-  wrap_block.classList.add("sight__items-card-block");
-  wrap.appendChild(wrap_block);
+  const text = document.getElementById("sight_text");
+  text.textContent = data.description;
 
   const image1 = document.createElement("img");
-  image1.src = data.image1;
-  image1.alt = data.title;
-  image1.classList.add("sight__items-card-pic1");
-  wrap_block.appendChild(image1);
+  image1.src = data.image1
+  image1.classList.add("sight__item-main-pic");
+
+  const imageMain = document.getElementById("sight_main");
+  imageMain.appendChild(image1);
 
   const image2 = document.createElement("img");
-  image2.src = data.image2;
-  image2.alt = data.title;
-  image2.classList.add("sight__items-card-pic2");
-  wrap_block.appendChild(image2);
+  image2.src = data.image2
+  image2.classList.add("sight__item-second-pics");
 
   const image3 = document.createElement("img");
-  image3.src = data.image3;
-  image3.alt = data.title;
-  image3.classList.add("sight__items-card-pic3");
-  wrap_block.appendChild(image3);
+  image3.src = data.image3
+  image3.classList.add("sight__item-second-pics");
 
-  const description_block = document.createElement("div");
-  description_block.classList.add("sight__items-card-back");
-  wrap_block.appendChild(description_block);
+  imageSecond = document.getElementById("sight_second");
+  imageSecond.appendChild(image2);
+  imageSecond.appendChild(image3);
 
-  const description = document.createElement("p");
-  description.textContent = data.description;
-  description.classList.add("sight__items-card-text");
-  description_block.appendChild(description);
+  const adress = document.getElementById("sight_adress");
+  adress.textContent = data.adress
 
-  const adress = document.createElement("p");
-  adress.textContent = data.adress;
-  adress.classList.add("sight__items-card-adres");
-  wrap_block.appendChild(adress);
-
-  card.appendChild(wrap);
-  sight.appendChild(card);
+  const map = document.getElementById("map");
+  map.src = data.map3;
 }
 
 // Лоадер
-
-window.onload = function() { 
+window.addEventListener('load' , function() {
   let preloader = document.getElementById('loader');
   let bg = document.getElementById("loading")
   preloader.classList.add('hide-loader');
@@ -99,5 +75,23 @@ window.onload = function() {
   setInterval(function() {
     preloader.classList.add('loader-hidden');
     bg.classList.add('loader-hidden');
-  }, 990);
-}
+  }, 1200);
+});
+
+
+document.getElementById("map_btton").addEventListener("click", function() {
+  document.getElementById("map_yandex").style.display = "block";
+  document.getElementById("map_yandex").style.animation = "fade 0.5s ease";
+  document.getElementById("back").style.display = "block";
+  document.getElementById("back").style.animation = "fade 0.5s ease";
+  document.getElementById("close").style.display = "block";
+  document.getElementById("close").style.animation = "fade 0.5s ease";
+  document.body.style.overflow = "hidden"
+})
+
+document.getElementById("close").addEventListener("click", function() {
+  document.getElementById("map_yandex").style.display = "none";
+  document.getElementById("back").style.display = "none";
+  document.getElementById("close").style.display = "none";
+  document.body.style.overflow = ""
+})

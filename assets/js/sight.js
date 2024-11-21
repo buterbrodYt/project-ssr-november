@@ -267,7 +267,7 @@ function DisplayingServer() {
 
 // Лоадер
 
-window.onload = function() {
+window.addEventListener('load' , function() {
   let preloader = document.getElementById('loader');
   let bg = document.getElementById("loading")
   preloader.classList.add('hide-loader');
@@ -275,6 +275,6 @@ window.onload = function() {
   setInterval(function() {
     preloader.classList.add('loader-hidden');
     bg.classList.add('loader-hidden');
-  }, 2500);
-}
+  }, 1200);
+});
 DisplayingServer();

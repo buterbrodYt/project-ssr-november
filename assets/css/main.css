@@ -67,6 +67,7 @@ li {
 .header__menu {
   display: flex;
   align-items: center;
+  margin-right: 10px;
 }
 @media (max-width: 900px) {
   .header__menu {
@@ -183,7 +184,7 @@ li {
 .main {
   height: 80vh;
   margin: 0;
-  margin-bottom: 70px;
+  margin-bottom: 100px;
 }
 
 .slider {

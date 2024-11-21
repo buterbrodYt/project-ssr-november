@@ -16,6 +16,11 @@
     <title>Городской навигатор</title>
 </head>
 <body>
+    <div id="back"></div>
+    <div id="close">
+        <div class="closes"></div>
+        <div class="closes"></div>
+    </div>
     <div id="loading"></div>
     <div id="loader" class="load">
         <hr/><hr/><hr/><hr/>
@@ -51,8 +56,33 @@
     </header>
     <section class="sight">
         <ul id="data_container" class="sight__items">
-
+            <li class="sight__item">
+                <div class="sight__wrap">
+                    <div class="sight__item-title">
+                        <p id="sight_title"></p>
+                    </div>
+                    <div class="sight__item-text">
+                        <p id="sight_text"></p>
+                    </div>
+                    <div id="sight_main" class="sight__item-main"></div>
+                    <div id="sight_second" class="sight__item-second"></div>
+                    <div class="sight__item-adress">
+                        <p id="sight_adress"></p>
+                    </div>
+                </div>
+            </li>
         </ul>
+    </section>
+    <section class="map">
+        <div>
+            <button id="map_btton" class="map__btn">Показать карту</button>
+        </div>
+        <div id="map_yandex" class="map__yandex">
+            <div class="map__yandex-back"></div>
+            <div class="map__yandex-wrap">
+                <iframe id="map" class="map__yandex-iframe" allowfullscreen="true"></iframe>
+            </div>
+        </div>
     </section>
     <footer class="footer">
         <div class="footer__wrap">
