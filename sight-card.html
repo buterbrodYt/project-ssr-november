@@ -61,11 +61,16 @@
                     <div class="sight__item-title">
                         <p id="sight_title"></p>
                     </div>
-                    <div class="sight__item-text">
-                        <p id="sight_text"></p>
+                    <div class="sight__main-wrap">
+                        <div class="sight__item-text">
+                            <p id="sight_text"></p>
+                        </div>
+                        <div id="sight_slides-wrap" class="sight__slides-wrap">
+                            <button id="prevBtn" class="sight__btn sight__btn-left"><img src="./assets/img/left-arrow.svg" alt="arr"></button>
+                            <button id="nextBtn" class="sight__btn sight__btn-right"><img src="./assets/img/right-arrow.svg" alt="arr"></button>
+                            <div id="sight_main" class="sight__item-main"></div>
+                        </div>
                     </div>
-                    <div id="sight_main" class="sight__item-main"></div>
-                    <div id="sight_second" class="sight__item-second"></div>
                     <div class="sight__item-adress">
                         <p id="sight_adress"></p>
                     </div>
@@ -87,12 +92,12 @@
     <footer class="footer">
         <div class="footer__wrap">
             <div class="footer__logo">
-                <a href="./index.html">
+                <a href="./index.html" class="footer__logo">
+                    <img src="./assets/img/logo_wh.svg" alt="logo" class="footer__logo-pic">
                     <div class="footer__logo-block">
-                        <img src="./assets/img/logo_wh.svg" alt="logo" class="footer__logo-pic">
                         <p class="footer__logo-title">Городской Навигатор</p>
+                        <p class="footer__logo-subtitle">©2024 Городской Навигатор</p>
                     </div>
-                    <p class="footer__logo-subtitle">©2024 Городской Навигатор</p>
                 </a>
             </div>
             <div class="footer__contact">
@@ -121,6 +126,6 @@
             <p class="footer__bottom-text">Site by BTT</p>
         </div>
     </footer>
-    <script src="./assets/js/test1.js"></script>
+    <script src="./assets/js/sight-card.js"></script>
 </body>
 </html>

@@ -14,16 +14,18 @@ document.getElementById("burgerIcon").addEventListener("click", function () {
 });
 
 // Данные с сервера
+
 function DisplayingServer() {
   const url = "https://67266547302d03037e6d6bc0.mockapi.io/v1/sight-card";
   let allData;
   let currentPage = parseInt(localStorage.getItem("savedPage")) || 1;
-  const itemsPerPage = 10;
+  const itemsPerPage = 9;
   let totalPages;
   let searchTerm = localStorage.getItem("savedSearch") || "";
   let selectedCategory = localStorage.getItem("savedCategory") || "all";
 
   // Получение данных с API
+
   (async function fetchData() {
     try {
       const response = await fetch(url);
@@ -32,7 +34,6 @@ function DisplayingServer() {
       }
 
       allData = await response.json();
-      displayData(allData);
       filteringAndSearching();
 
     } catch (error) {
@@ -41,6 +42,7 @@ function DisplayingServer() {
   })();
 
   // Отображение данных
+
   function displayData(data) {
     const sight = document.getElementById("data_container");
     const start = (currentPage - 1) * itemsPerPage;
@@ -57,7 +59,7 @@ function DisplayingServer() {
       wrap.classList.add("sight__items-card");
 
       const title = document.createElement("h2");
-      title.textContent = item.title;
+      title.innerHTML += item.title;
       title.classList.add("sight__items-card-title");
       wrap.appendChild(title);
 
@@ -82,14 +84,9 @@ function DisplayingServer() {
       wrap_block.appendChild(description_block);
 
       const description = document.createElement("p");
-      description.textContent = item.description;
+      description.innerHTML += item.description;
       description.classList.add("sight__items-card-text");
       description_block.appendChild(description);
-
-      const adress = document.createElement("p");
-      adress.textContent = item.adress;
-      adress.classList.add("sight__items-card-adres");
-      wrap_block.appendChild(adress);
 
       card.appendChild(wrap);
       sight.appendChild(card);
@@ -106,6 +103,7 @@ function DisplayingServer() {
   }
 
   // Пагинация
+
   function updatePagination(data) {
     const totalPages = Math.ceil(data.length / itemsPerPage);
     const firstPage = document.getElementById("firstPage");
@@ -138,6 +136,7 @@ function DisplayingServer() {
   }
 
    // Кнопки пагинации
+
    function Buttons() {
     const showMore = document.getElementById("showMoreButton");
     const firstPage = document.getElementById("firstPage");
@@ -214,7 +213,7 @@ function DisplayingServer() {
         item.title.toLowerCase().includes(searchTerm) ||
         item.description.toLowerCase().includes(searchTerm);
       const matchesCategory =
-        selectedCategory === "all" || item.category === selectedCategory;
+        selectedCategory === "all" || item.category.split(" ").includes(selectedCategory);
       return matchesSearch && matchesCategory;
     });
 

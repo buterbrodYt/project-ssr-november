@@ -13,6 +13,8 @@ document.getElementById("burgerIcon").addEventListener("click", function () {
   }
 });
 
+// Данные с сервера
+
 const url = "https://67266547302d03037e6d6bc0.mockapi.io/v1/sight-card";
 let data;
 const id = localStorage.getItem("savedId");
@@ -37,27 +39,26 @@ function displayData(data) {
   const title = document.getElementById("sight_title");
   title.textContent = data.title;
 
-  const text = document.getElementById("sight_text");
-  text.textContent = data.description;
-
   const image1 = document.createElement("img");
   image1.src = data.image1
   image1.classList.add("sight__item-main-pic");
 
-  const imageMain = document.getElementById("sight_main");
-  imageMain.appendChild(image1);
-
   const image2 = document.createElement("img");
   image2.src = data.image2
-  image2.classList.add("sight__item-second-pics");
+  image2.classList.add("sight__item-main-pic");
 
   const image3 = document.createElement("img");
   image3.src = data.image3
-  image3.classList.add("sight__item-second-pics");
+  image3.classList.add("sight__item-main-pic");
 
-  imageSecond = document.getElementById("sight_second");
-  imageSecond.appendChild(image2);
-  imageSecond.appendChild(image3);
+  const image = document.getElementById("sight_main");
+  image.appendChild(image1);
+  image.appendChild(image2);
+  image.appendChild(image3);
+
+  
+  const text = document.getElementById("sight_text");
+  text.textContent = data.description;
 
   const adress = document.getElementById("sight_adress");
   adress.textContent = data.adress
@@ -67,6 +68,7 @@ function displayData(data) {
 }
 
 // Лоадер
+
 window.addEventListener('load' , function() {
   let preloader = document.getElementById('loader');
   let bg = document.getElementById("loading")
@@ -78,6 +80,7 @@ window.addEventListener('load' , function() {
   }, 1200);
 });
 
+// Карта
 
 document.getElementById("map_btton").addEventListener("click", function() {
   document.getElementById("map_yandex").style.display = "block";
@@ -95,3 +98,57 @@ document.getElementById("close").addEventListener("click", function() {
   document.getElementById("close").style.display = "none";
   document.body.style.overflow = "visible"
 })
+
+// Слайдер
+
+document.addEventListener("DOMContentLoaded", function() {
+  const slides = document.getElementById("sight_main");
+  const slide = document.querySelectorAll("img");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  let currentSliderIndex = 0;
+  const totalSlides = slide.length;
+
+  function updateSliderPosition() {
+    slides.style.transform = `translateX(-${(currentSliderIndex * 50)}%)`;
+  }
+
+  if (currentSliderIndex < totalSlides - 4) {
+    nextBtn.disabled = false;
+  } else {
+    nextBtn.disabled = true;
+  }
+
+  if (currentSliderIndex > 0) {
+    prevBtn.disabled = false;
+  } else {
+    prevBtn.disabled = true;
+  }
+
+  nextBtn.addEventListener("click", () => {
+    if (currentSliderIndex < totalSlides - 4) {
+      currentSliderIndex++;
+      updateSliderPosition();
+      nextBtn.disabled = false;
+      prevBtn.disabled = false;
+    } else {
+      prevBtn.disabled = false;
+      nextBtn.disabled = true;
+    }
+  });
+
+  prevBtn.addEventListener("click", () => {
+    if (currentSliderIndex > 0) {
+      currentSliderIndex--;
+      updateSliderPosition();
+      prevBtn.disabled = false;
+      nextBtn.disabled = false;
+    } else {
+      nextBtn.disabled = false;
+      prevBtn.disabled = true;
+    }
+  });
+
+  updateSliderPosition();
+});
