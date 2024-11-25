@@ -395,34 +395,22 @@ li {
 
     &__btn {
         position: absolute;
-        background-color: transparent;
+        border-radius: 5px;
+        background-color: rgba(0, 0, 0, 0.3);
         border: none;
-        margin-top: 500px;
-        @media (max-width:768px) {
-            margin-top: 200px;
-        }
+        z-index: 1;
         &-left {
-            left: 35%;
-            z-index: 5;
-
-            @media (max-width:768px) {
-                left: 15%;
-            }
+            margin-left: 10px;
         }
-        &-right{
-            right: 7%;
-            z-index: 5;
 
-            @media (max-width:768px) {
-                right: 15%;
-            }
         }
-    }
 
     &__slides-wrap {
-        width: 100%;
+        width: 1000px;
         overflow: hidden;
+        border-radius: 15px;
         margin-right: 20px;
+        flex-direction: row;
 
         @media (max-width:768px) {
             width: 100%;
@@ -438,15 +426,18 @@ li {
             background-color: #fff;
             width: 100%;
             border-radius: 15px;
+            padding: 20px;
 
             @media (max-width: 768px) {
                 flex-direction: column;
-                margin: 0 20px;
+                margin: 0 10px;
             }
         }
     }
 
     &__item {
+        display: flex;
+        justify-content: center;
         width: 100%;
 
         &-title {
@@ -479,24 +470,21 @@ li {
 
         &-main {
             display: flex;
+            height: 700px;
             flex-direction: row;
-            width: calc(100%*3);
-            padding: 20px 0px;
             border-radius: 15px;
             transition: transform 0.5s ease-in-out;
-
             @media (max-width: 768px) {
-                width: calc(70%*3);
                 padding: 0;
             }
 
             &-pic {
-                width: 50%;
+                width: 100%;
                 height: auto;
                 object-fit: cover;
 
                 @media (max-width:768px) {
-                    width: 50%;
+                    width: 100%;
                     height: 50vh;
                 }
             }
@@ -511,11 +499,15 @@ li {
     }
 
     &__wrap {
-        width: 100%;
+        width: 80%;
         padding: 0 50px;
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        @media (max-width:768px) {
+            padding: 0 10px;
+        }
     }
 }
 

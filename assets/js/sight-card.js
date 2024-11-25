@@ -102,16 +102,22 @@ document.getElementById("close").addEventListener("click", function() {
 // Слайдер
 
 document.addEventListener("DOMContentLoaded", function() {
-  const slides = document.getElementById("sight_main");
+  const slidesWrap = document.getElementById("sight_main");
+  const slides = document.getElementById("sight_slides-wrap")
   const slide = document.querySelectorAll("img");
   const prevBtn = document.getElementById("prevBtn");
   const nextBtn = document.getElementById("nextBtn");
+  console.log(slides.clientHeight);
+
+  nextBtn.style.marginLeft = `${(slides.clientWidth)-42}px`
+  nextBtn.style.marginTop = `${(slides.clientHeight)/2+32}px`
+  prevBtn.style.marginTop = `${(slides.clientHeight)/2+32}px`
 
   let currentSliderIndex = 0;
   const totalSlides = slide.length;
 
   function updateSliderPosition() {
-    slides.style.transform = `translateX(-${(currentSliderIndex * 50)}%)`;
+    slidesWrap.style.transform = `translateX(-${(currentSliderIndex * slides.clientWidth)}px)`;
   }
 
   if (currentSliderIndex < totalSlides - 4) {
