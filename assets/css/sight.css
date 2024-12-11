@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @font-face {
   font-family: roboto;
   src: url(../fonts/Roboto-Regular.ttf);
@@ -272,7 +271,8 @@ li {
   }
 }
 .search {
-  margin: 30px 30% 50px 30%;
+  width: 40%;
+  margin: 50px auto;
   padding: 5px 0;
   background-color: #d3e0ed;
   border-radius: 50px;
@@ -286,6 +286,7 @@ li {
   display: flex;
   gap: 15px;
   justify-content: center;
+  align-items: center;
 }
 .search__filter {
   width: 40px;
@@ -303,15 +304,25 @@ li {
 .search__filter:focus {
   outline: none;
 }
+.search__filter:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
 .search__filter-opt {
-  color: #74839b;
+  color: #d3e0ed;
   background-color: #06334b;
   font-size: 20px;
   font-weight: 500;
 }
-.search__input {
-  height: 40px;
+.search__block {
+  display: flex;
+  gap: 15px;
+  align-items: center;
   width: 80%;
+}
+.search__block-input {
+  height: 40px;
+  width: 100%;
   border-radius: 30px;
   background-color: #b1b1b1;
   padding: 15px;
@@ -320,26 +331,45 @@ li {
   border: none;
 }
 @media (max-width: 1000px) {
-  .search__input {
+  .search__block-input {
     width: 70%;
   }
 }
-.search__input::-moz-placeholder {
+.search__block-input::-moz-placeholder {
   color: #d3e0ed;
 }
-.search__input::placeholder {
+.search__block-input::placeholder {
   color: #d3e0ed;
 }
-.search__input::after {
-  content: "✕";
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+.search__block-input:focus {
+  outline: none;
+}
+.search__block-sumbit {
+  background: url(../img/search_icon.svg) center center no-repeat;
+  border: none;
+  width: 44px;
+  height: 44px;
+}
+.search__block-sumbit:hover {
   cursor: pointer;
-  color: #999;
+  opacity: 0.7;
 }
-.search__input:focus {
+.search__menu {
+  display: none;
+  position: absolute;
+  justify-content: space-between;
+  z-index: 2;
+  margin-top: 5px;
+  width: 40%;
+  padding: 50px;
+  border-radius: 25px;
+  background-color: #d3e0ed;
+  border: #000 3px solid;
+}
+.search__menu-select {
+  border: none;
+}
+.search__menu-select:focus {
   outline: none;
 }
 

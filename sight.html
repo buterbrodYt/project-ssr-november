@@ -51,20 +51,34 @@
     </header>
     <section class="search">
         <div class="search__wrap">
-            <select id="category__select" class="search__filter">
-                <option value="all" class="search__filter-opt" selected>Все категории</option>
+            <button id="menu__button" class="search__filter"></button>
+            <div class="search__block">
+                <input type="text" id="search__input" class="search__block-input" placeholder="Поиск">
+                <button class="search__block-sumbit" id="search__submit"></button>
+            </div>
+        </div>
+        <div class="search__menu" id="menu">
+            <select name="category" id="category__select" class="search__menu-select">
+                <option value="all" class="search__filter-opt">Все категории</option>
                 <option value="natural" class="search__filter-opt">Природные объекты</option>
                 <option value="cultural" class="search__filter-opt">Культурные объекты</option>
                 <option value="historical" class="search__filter-opt">Исторические объекты</option>
                 <option value="religious" class="search__filter-opt">Религиозные объекты</option>
             </select>
-            <input type="text" id="search__input" class="search__input" placeholder="Поиск">
+            <select name="sorting" id="sorting__select" class="search__menu-select">
+                <option value="none" class="search__filter-opt">Сортировать по...</option>
+                <option value="a-z" class="search__filter-opt">А-я</option>
+                <option value="z-a" class="search__filter-opt">Я-а</option>
+                <option value="pop" class="search__filter-opt">Сначала популярные</option>
+                <option value="!pop" class="search__filter-opt">Сначала непопулярные</option>
+                <option value="year" class="search__filter-opt">Сначала старые</option>
+                <option value="!year" class="search__filter-opt">Сначала новые</option>
+            </select>
         </div>
     </section>
-    <section class="sight">
+    <section class="sight" id="sight">
         <ul id="data_container" class="sight__items">
         </ul>
-        <button id="showMoreButton" >Показать еще</button>
         <div id="pagination">
             <button id="firstPage"><img src="./assets/img/Chevrons_double_left.svg" alt="double_left"></button>
             <button id="nowPage-1" class="pagination__text "></button>
@@ -85,7 +99,7 @@
                 </a>
             </div>
             <div class="footer__contact">
-                <a href="./contact.html" class="footer_contact-link"><p class="footer__contact-title">Контакты</p></a>
+                <a href="./contact.html" class="footer__contact-link"><p class="footer__contact-title">Контакты</p></a>
                 <div class="footer__contact-wrap">
                     <div class="footer__contact-block">
                         <a href="https://t.me/butterbrodyt" class="footer__contact-link">
@@ -110,6 +124,6 @@
             <p class="footer__bottom-text">Site by BTT</p>
         </div>
     </footer>
-    <script src="./assets/js/sight.js"></script>
+    <script src="./assets/js/sight-class.js"></script>
 </body>
 </html>

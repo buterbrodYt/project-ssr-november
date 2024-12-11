@@ -291,7 +291,8 @@ li {
 }
 
 .search {
-    margin: 30px 30% 50px 30%;
+    width: 40%;
+    margin: 50px auto;
     padding: 5px 0;
     background-color: $block_color;
     border-radius: 50px;
@@ -304,6 +305,7 @@ li {
         display: flex;
         gap: 15px;
         justify-content: center;
+        align-items: center;
     }
 
     &__filter {
@@ -320,9 +322,14 @@ li {
         &:focus {
             outline: none;
         }
+
+        &:hover {
+            cursor: pointer;
+            opacity: 0.9;
+        }
         
         &-opt {
-            color: $background_color;
+            color: $block_color;
             background-color: $main_color;
             font-size: 20px;
             font-weight: 500;
@@ -330,39 +337,66 @@ li {
         
     }
 
-    &__input {
-        height: 40px;
+    &__block {
+        display: flex;
+        gap: 15px;
+        align-items: center;
         width: 80%;
-        border-radius: 30px;
-        background-color: #b1b1b1;
-        padding: 15px;
-        font-size: 16px;
-        font-weight: 500;
-        border: none;
 
-        @media (max-width:1000px) {
-            width: 70%;
+        &-input {
+            height: 40px;
+            width: 100%;
+            border-radius: 30px;
+            background-color: #b1b1b1;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 500;
+            border: none;
+    
+            @media (max-width:1000px) {
+                width: 70%;
+            }
+    
+            &::placeholder {
+                color: $block_color;
+            }
+    
+            &:focus {
+                outline: none;
+            }
         }
 
-        &::placeholder {
-            color: $block_color;
-        }
+        &-sumbit {
+            background: url(../img/search_icon.svg) center center no-repeat;
+            border: none;
+            width: 44px;
+            height: 44px;
 
-        &::after {
-            content: '✕';
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #999;
+            &:hover {
+                cursor: pointer;
+                opacity: 0.7;
+            }
         }
-        
+    }
 
-        &:focus {
-            outline: none;
+    &__menu {
+        display: none;
+        position: absolute;
+        justify-content: space-between;
+        z-index: 2;
+        margin-top: 5px;
+        width: 40%;
+        padding: 50px;
+        border-radius: 25px;
+        background-color: $block_color;
+        border: #000 3px solid;
+
+        &-select {
+            border: none;
+            &:focus {
+                outline: none;
+            }
         }
-
     }
 }
 

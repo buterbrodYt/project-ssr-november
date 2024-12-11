@@ -405,11 +405,10 @@ li {
 
         }
 
-    &__slides-wrap {
+    &__img {
         width: 1000px;
         overflow: hidden;
         border-radius: 15px;
-        margin-right: 20px;
         flex-direction: row;
 
         @media (max-width:768px) {
@@ -423,7 +422,7 @@ li {
             display: flex;
             flex-direction: row;
             margin: 0px 50px;
-            background-color: #fff;
+            background-color: $block_color;
             width: 100%;
             border-radius: 15px;
             padding: 20px;
