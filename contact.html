@@ -1,113 +1,144 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/contact.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/contact.css" />
     <title>Городской навигатор</title>
-</head>
-<body>
+  </head>
+  <body>
     <header class="header">
-        <div class="header__wrap">
-            <div class="header__logo">
-                <img src="./assets/img/logo_bl.svg" alt="logo" class="header__logo-pic">
-                <a href="./index.html" class="header__logo-link"><p class="header__logo-text">Городской навигатор</p></a>
-            </div>
-            <nav class="header__menu">
-                <ul class="header__menu-list">
-                    <li class="header__menu-item">
-                        <a href="./contact.html" class="header__link">Контакты</a>
-                    </li>
-                    <li class="header__menu-item">
-                        <a href="./sight.html" class="header__link">Достопримечательности</a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="burger__menu">
-                <div class="burger__icon" id="burgerIcon">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </div>
-                <div class="burger__menu-items" id="menuItems">
-                    <a href="./contact.html">Контакты</a>
-                    <a href="./sight.html">Достопримечательности</a>
-                </div>
-            </div>
+      <div class="header__wrap">
+        <div class="header__logo">
+          <img
+            src="./assets/img/logo_bl.svg"
+            alt="logo"
+            class="header__logo-pic"
+          />
+          <a href="./index.html" class="header__logo-link"
+            ><p class="header__logo-text">Городской навигатор</p></a
+          >
         </div>
+        <nav class="header__menu">
+          <ul class="header__menu-list">
+            <li class="header__menu-item">
+              <a href="./contact.html" class="header__link">Контакты</a>
+            </li>
+            <li class="header__menu-item">
+              <a href="./sight.html" class="header__link"
+                >Достопримечательности</a
+              >
+            </li>
+          </ul>
+        </nav>
+        <div class="burger__menu">
+          <div class="burger__icon" id="burgerIcon" onclick="burg.listener()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+          <div class="burger__menu-items" id="menuItems">
+            <a href="./contact.html">Контакты</a>
+            <a href="./sight.html">Достопримечательности</a>
+          </div>
+        </div>
+      </div>
     </header>
     <section class="contact">
-        <div class="contact__wrap">
-            <div class="contact__social">
-                <p class="contact__social-title">Мы в соц. сетях</p>
-                <div class="contact__social-icons">
-                    <a href="https://t.me/butterbrodyt"><img src="./assets/img/TG_black.svg" alt="Telegram"></a>
-                    <a href="https://vk.com/mc_max1939"><img src="./assets/img/VK_black.svg" alt="Vkontakte"></a>
-                </div>
-                <p class="contact__social-title">Почта</p>
-                <p class="contact__social-text">gagfajhhjhd@mail.ru</p>
-                <p class="contact__social-title">Телефон</p>
-                <p class="contact__social-text">+7(999)-999-99-99</p>
-            </div>
-            <button id="openModalBtn" class="contact__btn">Связаться с нами</button>
-            <div id="modal" class="modal">
-                <div class="modal__wrap">
-                    <div class="modal__content">
-                        <span class="close">&times;</span>
-                        <h2>Введите данные</h2>
-                        <form id="modal__Form">
-                            <label for="name">Имя:</label>
-                            <input type="text" id="name" name="name" required>
-
-                            <label for="phone">Телефон:</label>
-                            <input type="number" id="phone" name="phone" required>
-
-                            <label for="message">Сообщение:</label>
-                            <textarea id="message" name="message" required></textarea>
-
-                            <button type="submit">Отправить заявку</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+      <div class="contact__wrap">
+        <div class="contact__social">
+          <p class="contact__social-title">Мы в соц. сетях</p>
+          <div class="contact__social-icons">
+            <a href="https://t.me/butterbrodyt"
+              ><img src="./assets/img/TG_black.svg" alt="Telegram"
+            /></a>
+            <a href="https://vk.com/mc_max1939"
+              ><img src="./assets/img/VK_black.svg" alt="Vkontakte"
+            /></a>
+          </div>
+          <p class="contact__social-title">Почта</p>
+          <p class="contact__social-text">gagfajhhjhd@mail.ru</p>
+          <p class="contact__social-title">Телефон</p>
+          <p class="contact__social-text">+7(999)-999-99-99</p>
         </div>
+        <button id="openModalBtn" class="contact__btn" onclick="modal.openModal()">Связаться с нами</button>
+        <div id="modal" class="modal">
+          <div class="modal__wrap">
+            <div class="modal__content">
+              <span class="close" onclick="modal.closeModal()">&times;</span>
+              <h2>Введите данные</h2>
+              <form id="modal__Form">
+                <label for="name">Имя:</label>
+                <input type="text" id="name" name="name" required />
+
+                <label for="phone">Телефон:</label>
+                <input type="number" id="phone" name="phone" required />
+
+                <label for="message">Сообщение:</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit" onclick="modal.submitModal()">Отправить заявку</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <footer class="footer">
-        <div class="footer__wrap">
-            <div class="footer__logo">
-                <a href="./index.html" class="footer__logo">
-                    <img src="./assets/img/logo_wh.svg" alt="logo" class="footer__logo-pic">
-                    <div class="footer__logo-block">
-                        <p class="footer__logo-title">Городской Навигатор</p>
-                        <p class="footer__logo-subtitle">©2024 Городской Навигатор</p>
-                    </div>
-                </a>
+      <div class="footer__wrap">
+        <div class="footer__logo">
+          <a href="./index.html" class="footer__logo">
+            <img
+              src="./assets/img/logo_wh.svg"
+              alt="logo"
+              class="footer__logo-pic"
+            />
+            <div class="footer__logo-block">
+              <p class="footer__logo-title">Городской Навигатор</p>
+              <p class="footer__logo-subtitle">©2024 Городской Навигатор</p>
             </div>
-            <div class="footer__contact">
-                <a href="./contact.html" class="footer_contact-link"><p class="footer__contact-title">Контакты</p></a>
-                <div class="footer__contact-wrap">
-                    <div class="footer__contact-block">
-                        <a href="https://t.me/butterbrodyt" class="footer__contact-link">
-                            <img src="./assets/img/TG.svg" alt="telegram" class="footer__contact-pic">
-                            <p class="footer__contact-text">Telegram</p>
-                        </a>
-                    </div>
-                    <div class="footer__contact-block">
-                        <a href="https://vk.com/mc_max1939" class="footer__contact-link">
-                            <img src="./assets/img/VK.svg" alt="Vkontakte" class="footer__contact-pic">
-                            <p class="footer__contact-text">Vkontakte</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer__politics">
-                <a href="#" class="footer__politics-link"><p class="footer__politics-text">Политика Конфиденциальности</p></a>
-                <a href="#" class="footer__politics-link"><p class="footer__politics-text">Правила и Условия</p></a>
-            </div>
+          </a>
         </div>
-        <div class="footer__bottom">
-            <p class="footer__bottom-text">Site by BTT</p>
+        <div class="footer__contact">
+          <a href="./contact.html" class="footer__contact-link"
+            ><p class="footer__contact-title">Контакты</p></a
+          >
+          <div class="footer__contact-wrap">
+            <div class="footer__contact-block">
+              <a href="https://t.me/butterbrodyt" class="footer__contact-link">
+                <img
+                  src="./assets/img/TG.svg"
+                  alt="telegram"
+                  class="footer__contact-pic"
+                />
+                <p class="footer__contact-text">Telegram</p>
+              </a>
+            </div>
+            <div class="footer__contact-block">
+              <a href="https://vk.com/mc_max1939" class="footer__contact-link">
+                <img
+                  src="./assets/img/VK.svg"
+                  alt="Vkontakte"
+                  class="footer__contact-pic"
+                />
+                <p class="footer__contact-text">Vkontakte</p>
+              </a>
+            </div>
+          </div>
         </div>
+        <div class="footer__politics">
+          <a href="#" class="footer__politics-link"
+            ><p class="footer__politics-text">Политика Конфиденциальности</p></a
+          >
+          <a href="#" class="footer__politics-link"
+            ><p class="footer__politics-text">Правила и Условия</p></a
+          >
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__bottom-text">Site by BTT</p>
+      </div>
     </footer>
     <script src="./assets/js/contact.js"></script>
-</body>
+  </body>
+</html>

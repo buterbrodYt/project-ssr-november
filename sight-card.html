@@ -17,10 +17,17 @@
 </head>
 <body>
     <div id="back"></div>
-    <button id="close">
+    <button id="close" onclick="gall.closeGallery()">
         <div class="closes"></div>
         <div class="closes"></div>
     </button>
+    <div class="gallery" id="gallery">
+        <button class="gallery__btn" id="galleryPrev" onclick="gall.prevSlide()"></button>
+        <div class="gallery__slide" id="slide">
+            <div class="gallery__wrap" id="sliderWrap"></div>
+        </div>
+        <button class="gallery__btn" id="galleryNext" onclick="gall.nextSlide()"></button>
+    </div>
     <div id="loading"></div>
     <div id="loader" class="load">
         <hr/><hr/><hr/><hr/>
@@ -42,7 +49,7 @@
                 </ul>
             </nav>
             <div class="burger__menu">
-                <div class="burger__icon" id="burgerIcon">
+                <div class="burger__icon" id="burgerIcon" onclick="burg.listener()">
                     <div class="bar"></div>
                     <div class="bar"></div>
                     <div class="bar"></div>
@@ -65,9 +72,7 @@
                         <div class="sight__item-text">
                             <p id="sight_text"></p>
                         </div>
-                        <div id="sight__img" class="sight__img">
-                            <div id="sight_main" class="sight__item-main"></div>
-                        </div>
+                        <div id="sight__img" class="sight__img" onclick="gall.openGallery()"></div>
                     </div>
                     <div class="sight__item-adress">
                         <p id="sight_adress"></p>
@@ -99,7 +104,7 @@
                 </a>
             </div>
             <div class="footer__contact">
-                <a href="./contact.html" class="footer_contact-link"><p class="footer__contact-title">Контакты</p></a>
+                <a href="./contact.html" class="footer__contact-link"><p class="footer__contact-title">Контакты</p></a>
                 <div class="footer__contact-wrap">
                     <div class="footer__contact-block">
                         <a href="https://t.me/butterbrodyt" class="footer__contact-link">
@@ -124,6 +129,7 @@
             <p class="footer__bottom-text">Site by BTT</p>
         </div>
     </footer>
-    <script src="./assets/js/sight-card.js"></script>
+    <script src="./assets/js/fetch.js" type="module"></script>
+    <script src="./assets/js/sight-card.js" type="module"></script>
 </body>
 </html>

@@ -299,6 +299,7 @@ li {
 
     @media (max-width:900px) {
         margin: 30px 10% 50px 10%;
+        width: 80%;
     }
 
     &__wrap {
@@ -354,7 +355,7 @@ li {
             border: none;
     
             @media (max-width:1000px) {
-                width: 70%;
+                width: 100%;
             }
     
             &::placeholder {

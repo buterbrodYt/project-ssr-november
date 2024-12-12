@@ -54,7 +54,7 @@
             <button id="menu__button" class="search__filter"></button>
             <div class="search__block">
                 <input type="text" id="search__input" class="search__block-input" placeholder="Поиск">
-                <button class="search__block-sumbit" id="search__submit"></button>
+                <button class="search__block-sumbit" id="search__submit" onclick="search.filteringAndSearching()"></button>
             </div>
         </div>
         <div class="search__menu" id="menu">
@@ -80,11 +80,11 @@
         <ul id="data_container" class="sight__items">
         </ul>
         <div id="pagination">
-            <button id="firstPage"><img src="./assets/img/Chevrons_double_left.svg" alt="double_left"></button>
-            <button id="nowPage-1" class="pagination__text "></button>
+            <button id="firstPage" onclick="pag.firstPage()"><img src="./assets/img/Chevrons_double_left.svg" alt="double_left"></button>
+            <button id="nowPage-1" class="pagination__text" onclick="pag.prevPage()"></button>
             <span id="nowPage" class="pagination__text pagination__text-main"></span>
-            <button id="nowPage+1" class="pagination__text "></button>
-            <button id="lastPage"><img src="./assets/img/Chevrons_double_right.svg" alt="right"></button>
+            <button id="nowPage+1" class="pagination__text" onclick="pag.nextPage()"></button>
+            <button id="lastPage" onclick="pag.lastPage()"><img src="./assets/img/Chevrons_double_right.svg" alt="right"></button>
         </div>
     </section>
     <footer class="footer">
@@ -124,6 +124,7 @@
             <p class="footer__bottom-text">Site by BTT</p>
         </div>
     </footer>
-    <script src="./assets/js/sight-class.js"></script>
+    <script src="./assets/js/fetch.js" type="module"></script>
+    <script src="./assets/js/sight-class.js" type="module"></script>
 </body>
 </html>

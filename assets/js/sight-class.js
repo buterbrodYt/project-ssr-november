@@ -1,11 +1,11 @@
+import Fetch from "./fetch.js";
 class BurgerMenu {
   constructor() {
     this.burgerIcon = document.getElementById("burgerIcon");
     this.menuItems = document.getElementById("menuItems");
-    this.burgerIcon.addEventListener("click", this.toggleMenu.bind(this));
   }
 
-  toggleMenu() {
+  listener() {
     if (this.menuItems.classList.contains("open")) {
       this.menuItems.classList.remove("open");
       this.burgerIcon.classList.remove("open");
@@ -16,17 +16,21 @@ class BurgerMenu {
   }
 }
 
-class DisplayingServer {
-  constructor() {
+class DisplayingSight {
+  constructor(data,allData) {
     this.url = new URL(
       "https://67266547302d03037e6d6bc0.mockapi.io/v1/sight-card"
     );
     this.allSightURL = new URL(
       "https://67266547302d03037e6d6bc0.mockapi.io/v1/sight-card"
     );
-    this.Data = [];
-    this.allData = [];
+    this.Data = data;
+    this.allData = allData;
+    this.totalPages = Math.ceil(this.allData/this.itemsPerPage);
     this.itemsPerPage = 9;
+  }
+
+  updateParams() {
     this.currentPage = parseInt(localStorage.getItem("savedPage")) || 1;
     this.searchTerm = localStorage.getItem("savedSearch") || "";
     this.selectedCategory = localStorage.getItem("savedCategory") || "";
@@ -39,43 +43,14 @@ class DisplayingServer {
       this.selectedSort = "";
     }
 
-    this.url.searchParams.append("limit", this.itemsPerPage);
-    this.url.searchParams.append("page", this.currentPage);
-    this.url.searchParams.append("title", this.searchTerm);
-    this.url.searchParams.append("sortBy", this.selectedSort);
-    this.url.searchParams.append("order", this.selectedOrder);
-    this.allSightURL.searchParams.append("title", this.searchTerm);
-    this.url.searchParams.append("category", this.selectedCategory);
-    this.allSightURL.searchParams.append("category", this.selectedCategory);
-
-    this.allSight();
-    this.fetchData();
-  }
-
-  async allSight() {
-    try {
-      const response = await fetch(this.allSightURL);
-      if (!response.ok) {
-        throw new Error("Ошибка сети");
-      }
-      this.allData = await response.json();
-      this.totalPages = Math.ceil(this.allData.length / this.itemsPerPage);
-    } catch (error) {
-      console.error("Ошибка при получении данных:", error);
-    }
-  }
-
-  async fetchData() {
-    try {
-      const response = await fetch(this.url);
-      if (!response.ok) {
-        throw new Error("Ошибка сети");
-      }
-      this.Data = await response.json();
-      this.displayData(this.Data);
-    } catch (error) {
-      console.error("Ошибка при получении данных:", error);
-    }
+    this.url.searchParams.set("limit", this.itemsPerPage);
+    this.url.searchParams.set("page", this.currentPage);
+    this.url.searchParams.set("title", this.searchTerm);
+    this.url.searchParams.set("sortBy", this.selectedSort);
+    this.url.searchParams.set("order", this.selectedOrder);
+    this.allSightURL.searchParams.set("title", this.searchTerm);
+    this.url.searchParams.set("category", this.selectedCategory);
+    this.allSightURL.searchParams.set("category", this.selectedCategory);
   }
 
   get pages() {
@@ -111,7 +86,7 @@ class DisplayingServer {
         a.appendChild(wrap_block);
 
         const image = document.createElement("img");
-        image.src = item.image1;
+        image.src = item.images[0];
         image.alt = item.title;
         image.classList.add("sight__items-card-pic");
         wrap_block.appendChild(image);
@@ -172,19 +147,16 @@ class DisplayingServer {
 }
 
 class SearchFilterSort {
-  constructor() {
+  constructor(obj,loader) {
     this.searchTerm = localStorage.getItem("savedSearch") || "";
     this.selectedCategory = localStorage.getItem("savedCategory") || "";
     this.selectedSort = localStorage.getItem("savedSort") || "";
-    this.displayMenu();
-    document.getElementById("search__submit").addEventListener("click", () => {
-      this.filteringAndSearching();
-    });
+    this.fetch = obj;
+    this.loader = loader;
   }
 
-  sumbitParams() {}
-
   filteringAndSearching() {
+    this.loader.showLoader();
     const searchInput = document.getElementById("search__input");
     const categorySelect = document.getElementById("category__select");
     const sortSelect = document.getElementById("sorting__select");
@@ -222,7 +194,8 @@ class SearchFilterSort {
 
     localStorage.setItem("savedSearch", this.searchTerm);
     localStorage.setItem("savedPage", this.currentPage);
-    location.reload();
+    this.fetch.fetchData();
+    this.loader.listener();
   }
 
   displayMenu() {
@@ -245,11 +218,11 @@ class SearchFilterSort {
 }
 
 class Pagination {
-  constructor(obj) {
+  constructor(obj, loader) {
     this.currentPage = parseInt(localStorage.getItem("savedPage")) || 1;
-    this.totalPages = obj.pages;
-    this.updatePagination();
-    this.setupEventListeners();
+    this.obj = obj;
+    this.totalPages = this.obj.pages;
+    this.loader = loader;
   }
 
   updatePagination() {
@@ -277,37 +250,39 @@ class Pagination {
       page2.style.display = "none";
       lastPage.disabled = true;
     }
+    this.loader.listener();
   }
 
-  setupEventListeners() {
-    const firstPage = document.getElementById("firstPage");
-    const lastPage = document.getElementById("lastPage");
-    const page1 = document.getElementById("nowPage-1");
-    const page2 = document.getElementById("nowPage+1");
+  firstPage() {
+    this.currentPage = 1;
+    localStorage.setItem("savedPage", this.currentPage);
+    this.loader.showLoader();
+    this.updatePagination();
+    this.obj.fetchData();
+  }
 
-    firstPage.addEventListener("click", () => {
-      this.currentPage = 1;
-      localStorage.setItem("savedPage", this.currentPage);
-      location.reload();
-    });
+  prevPage() {
+    this.currentPage--;
+    localStorage.setItem("savedPage", this.currentPage);
+    this.loader.showLoader();
+    this.updatePagination();
+    this.obj.fetchData();
+  }
 
-    lastPage.addEventListener("click", () => {
-      this.currentPage = this.totalPages;
-      localStorage.setItem("savedPage", this.currentPage);
-      location.reload();
-    });
+  nextPage() {
+    this.currentPage++;
+    localStorage.setItem("savedPage", this.currentPage);
+    this.loader.showLoader();
+    this.updatePagination();
+    this.obj.fetchData();
+  }
 
-    page1.addEventListener("click", () => {
-      this.currentPage--;
-      localStorage.setItem("savedPage", this.currentPage);
-      location.reload();
-    });
-
-    page2.addEventListener("click", () => {
-      this.currentPage++;
-      localStorage.setItem("savedPage", this.currentPage);
-      location.reload();
-    });
+  lastPage() {
+    this.currentPage = this.totalPages;
+    localStorage.setItem("savedPage", this.currentPage);
+    this.loader.showLoader();
+    this.updatePagination();
+    this.obj.fetchData();
   }
 }
 
@@ -315,7 +290,21 @@ class Loader {
   constructor() {
     this.preloader = document.getElementById("loader");
     this.bg = document.getElementById("loading");
-    window.addEventListener("load", this.hideLoader.bind(this));
+  }
+
+  listener() {
+    if (window.onload) {
+      this.showLoader();
+    } else {
+      this.hideLoader();
+    }
+  }
+
+  showLoader() {
+    this.preloader.classList.remove("hide-loader");
+    this.bg.classList.remove("hide-loader");
+    this.preloader.classList.remove("loader-hidden");
+    this.bg.classList.remove("loader-hidden");
   }
 
   hideLoader() {
@@ -324,17 +313,20 @@ class Loader {
     setTimeout(() => {
       this.preloader.classList.add("loader-hidden");
       this.bg.classList.add("loader-hidden");
-    }, 1200);
+    }, 1000);
   }
 }
 
-let pag;
-new BurgerMenu();
-serv = new DisplayingServer();
-inits(serv);
-async function inits(obj) {
-  await obj.fetchData();
-  pag = new Pagination(obj);
-};
-new Loader();
-new SearchFilterSort();
+let search
+let pag
+let serv
+const fetch = new Fetch();
+const load = new Loader();
+load.listener();
+const burg = new BurgerMenu();
+serv = new DisplayingSight(fetch.Data(),fetch.AllData());
+pag = new Pagination(serv, load);
+pag.updatePagination();
+search = new SearchFilterSort(serv,load);
+search.displayMenu();
+

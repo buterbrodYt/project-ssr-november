@@ -4,16 +4,15 @@ class BurgerMenu {
   constructor() {
     this.burgerIcon = document.getElementById("burgerIcon");
     this.menuItems = document.getElementById("menuItems");
-    this.burgerIcon.addEventListener("click", this.toggleMenu.bind(this));
   }
 
-  toggleMenu() {
+  listener() {
     if (this.menuItems.classList.contains("open")) {
-      this.menuItems.classList.remove("open");
-      this.burgerIcon.classList.remove("open");
+        this.menuItems.classList.remove("open");
+        this.burgerIcon.classList.remove("open");
     } else {
-      this.menuItems.classList.add("open");
-      this.burgerIcon.classList.add("open");
+        this.menuItems.classList.add("open");
+        this.burgerIcon.classList.add("open");
     }
   }
 }
@@ -25,8 +24,6 @@ class DisplayingServer {
     this.id = localStorage.getItem("savedId");
     this.idUrl = new URL(`https://67266547302d03037e6d6bc0.mockapi.io/v1/sight-card/${this.id}`);
     this.Data = [];
-
-    this.fetchData();
   }
 
   async fetchData() {
@@ -37,7 +34,6 @@ class DisplayingServer {
       }
       this.Data = await response.json();
       this.displayData(this.Data);
-      console.log(this.Data);
     } catch (error) {
       console.error("Ошибка при получении данных:", error);
     }
@@ -47,12 +43,21 @@ class DisplayingServer {
     const title = document.getElementById("sight_title");
     title.textContent = data.title;
 
-    const image1 = document.createElement("img");
-    image1.src = data.image1;
-    image1.classList.add("sight__item-main-pic");
+    const sliderWrap = document.getElementById("sliderWrap");
 
-    const image = document.getElementById("sight_main");
-    image.appendChild(image1);
+    data.images.forEach(image => {
+        let img = document.createElement("img");
+        img.src = image;
+        img.classList.add("gallery__img");
+        sliderWrap.appendChild(img);
+    });
+
+    const images = document.getElementById("sight__img");
+
+    const image1 = document.createElement("img");
+    image1.src = data.images[0];
+    image1.classList.add("sight__item-main-pic");
+    images.appendChild(image1);
 
     const text = document.getElementById("sight_text");
     text.textContent = data.description;
@@ -68,49 +73,116 @@ class DisplayingServer {
 // Лоадер
 
 class Loader {
-  constructor() {
-    this.preloader = document.getElementById("loader");
-    this.bg = document.getElementById("loading");
-    window.addEventListener("load", this.hideLoader.bind(this));
-  }
+    constructor() {
+      this.preloader = document.getElementById("loader");
+      this.bg = document.getElementById("loading");
+    }
 
-  hideLoader() {
-    this.preloader.classList.add("hide-loader");
-    this.bg.classList.add("hide-loader");
-    setTimeout(() => {
-      this.preloader.classList.add("loader-hidden");
-      this.bg.classList.add("loader-hidden");
-    }, 1200);
-  }
+    listener() {
+        if (window.onload) {
+            this.showLoader();
+        } else {
+            this.hideLoader();
+        }
+    }
+
+    showLoader() {
+        this.preloader.classList.remove("hide-loader");
+        this.bg.classList.remove("hide-loader");
+        setTimeout(() => {
+            this.preloader.classList.remove("loader-hidden");
+            this.bg.classList.remove("loader-hidden");
+        }, 1000);
+    }
+
+    hideLoader() {
+      this.preloader.classList.add("hide-loader");
+      this.bg.classList.add("hide-loader");
+      setTimeout(() => {
+        this.preloader.classList.add("loader-hidden");
+        this.bg.classList.add("loader-hidden");
+      }, 1000);
+    }
 }
 
 // Карта
 class YMap {
     constructor() {
-        this.Listener();
+        this.map = document.getElementById("map_yandex");
+        this.close = document.getElementById("close");
+        this.back = document.getElementById("back");
     }
 
-    Listener() {
-        document.getElementById("map_btton").addEventListener("click", function () {
-        document.getElementById("map_yandex").style.display = "block";
-        document.getElementById("map_yandex").style.animation = "fade 1s ease";
-        document.getElementById("back").style.display = "block";
-        document.getElementById("back").style.animation = "fade 1s ease";
-        document.getElementById("close").style.display = "block";
-        document.getElementById("close").style.animation = "fade 1s ease";
+    open() {
+        this.map.style.display = "block";
+        this.map.style.animation = "fade 1s ease";
+        this.back.style.display = "block";
+        this.back.style.animation = "fade 1s ease";
+        this.close.style.display = "block";
+        this.close.style.animation = "fade 1s ease";
         document.body.style.overflow = "hidden";
-        });
+    }
 
-        document.getElementById("close").addEventListener("click", function () {
-        document.getElementById("map_yandex").style.display = "none";
-        document.getElementById("back").style.display = "none";
-        document.getElementById("close").style.display = "none";
+    close() {
+        this.map.style.display = "none";
+        this.back.style.display = "none";
+        this.close.style.display = "none";
         document.body.style.overflow = "visible";
-        });
     }
 }
 
-new DisplayingServer();
-new BurgerMenu();
-new Loader()
-new YMap();
+class Gallery {
+    constructor() {
+        this.open = document.getElementById("sight__img");
+        this.back = document.getElementById("back");
+        this.close = document.getElementById("close");
+        this.gallery = document.getElementById("gallery");
+        
+        this.sliderWrap = document.getElementById("sliderWrap");
+        this.prev = document.getElementById("galleryPrev");
+        this.next = document.getElementById("galleryNext");
+        this.sliderWrap.style.transform = `translateX(-${60 * this.currentIndex}vw)`;
+        this.currentIndex = 0;
+    }
+
+    closeGallery() {
+        this.gallery.style.display = "none";
+        this.close.style.display = "none";
+        this.back.style.display = "none";
+        document.body.style.overflow = "visible";
+    }
+
+    openGallery() {
+        this.back.style.display = "block";
+        this.gallery.style.display = "flex"
+        this.close.style.display = "block";
+        document.body.style.overflow = "hidden";
+        console.log('123');
+    }
+
+    prevSlide() {
+        if (this.currentIndex <= 0) return;
+        this.moveToIndex(this.currentIndex - 1);
+    }
+
+    nextSlide() {
+        this.slides = document.querySelectorAll(".gallery__img");
+        this.slidesLen = this.slides.length;
+        if (this.currentIndex >= this.slidesLen-1) return;
+        this.moveToIndex(this.currentIndex + 1);
+    }
+
+    moveToIndex(index) {
+        this.sliderWrap.style.transition = "transform 0.6s ease-in-out";
+        this.sliderWrap.style.transform = `translateX(-${60 * index}vw)`;
+        this.currentIndex = index;
+    }
+}
+
+display = new DisplayingServer();
+display.fetchData()
+burg = new BurgerMenu();
+load = new Loader();
+load.listener();
+map = new YMap();
+gall = new Gallery();

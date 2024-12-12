@@ -1,66 +1,69 @@
-// Бургер
-
-document.getElementById("burgerIcon").addEventListener("click", function () {
-  const menuItems = document.getElementById("menuItems");
-  const burgerIcon = document.getElementById("burgerIcon");
-
-  if (menuItems.classList.contains("open")) {
-    menuItems.classList.remove("open");
-    burgerIcon.classList.remove("open");
-  } else {
-    menuItems.classList.add("open");
-    burgerIcon.classList.add("open");
-  }
-});
+class BurgerMenu {
+    constructor() {
+      this.burgerIcon = document.getElementById("burgerIcon");
+      this.menuItems = document.getElementById("menuItems");
+    }
+  
+    listener() {
+      if (this.menuItems.classList.contains("open")) {
+        this.menuItems.classList.remove("open");
+        this.burgerIcon.classList.remove("open");
+      } else {
+        this.menuItems.classList.add("open");
+        this.burgerIcon.classList.add("open");
+      }
+    }
+}
 
 // Бесконечный слайдер
 
-document.addEventListener("DOMContentLoaded", function () {
-  const sliderWrap = document.querySelector(".slider__wrap");
-  const slides = document.querySelectorAll(".slider__slide");
-  const btnPrev = document.querySelector(".slider__nav-back");
-  const btnNext = document.querySelector(".slider__nav-next");
-  let currentIndex = 1;
+class Slider {
+    constructor() {
+        this.sliderWrap = document.querySelector(".slider__wrap");
+        this.slides = document.querySelectorAll(".slider__slide");
+        this.btnPrev = document.querySelector(".slider__nav-back");
+        this.btnNext = document.querySelector(".slider__nav-next");
+        this.currentIndex = 1;
 
-  const firstClone = slides[0].cloneNode(true);
-  const lastClone = slides[slides.length - 1].cloneNode(true);
-  sliderWrap.appendChild(firstClone);
-  sliderWrap.insertBefore(lastClone, slides[0]);
+        this.firstClone = this.slides[0].cloneNode(true);
+        this.slidesLen = this.slides.length;
+        this.lastClone = this.slides[this.slidesLen - 1].cloneNode(true);
+        this.sliderWrap.appendChild(this.firstClone);
+        this.sliderWrap.insertBefore(this.lastClone, this.slides[0]);
 
-  const slideWidth = slides[0].clientWidth;
-  sliderWrap.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
-
-  function moveToIndex(index) {
-    sliderWrap.style.transition = "transform 0.6s ease-in-out";
-    sliderWrap.style.transform = `translateX(-${slideWidth * index}px)`;
-    currentIndex = index;
-  }
-
-  function handleTransitionEnd() {
-    if (currentIndex === slides.length + 1) {
-      sliderWrap.style.transition = "none";
-      currentIndex = 1;
-      sliderWrap.style.transform = `translateX(-${
-        slideWidth * currentIndex
-      }px)`;
-    } else if (currentIndex === 0) {
-      sliderWrap.style.transition = "none";
-      currentIndex = slides.length;
-      sliderWrap.style.transform = `translateX(-${
-        slideWidth * currentIndex
-      }px)`;
+        this.slideWidth = this.slides[0].clientWidth;
+        this.sliderWrap.style.transform = `translateX(-${this.slideWidth * this.currentIndex}px)`;
     }
-  }
 
-  sliderWrap.addEventListener("transitionend", handleTransitionEnd);
+    moveToIndex(index) {
+        this.sliderWrap.style.transition = "transform 0.6s ease-in-out";
+        this.sliderWrap.style.transform = `translateX(-${this.slideWidth * index}px)`;
+        this.currentIndex = index;
+    }
 
-  btnPrev.addEventListener("click", () => {
-    if (currentIndex <= 0) return;
-    moveToIndex(currentIndex - 1);
-  });
+    handleTransitionEnd() {
+        if (this.currentIndex == this.slidesLen + 1) {
+            this.sliderWrap.style.transition = "none";
+            this.currentIndex = 1;
+            this.sliderWrap.style.transform = `translateX(-${this.slideWidth * this.currentIndex}px)`;
+          } else if (this.currentIndex == 0) {
+            this.sliderWrap.style.transition = "none";
+            this.currentIndex = this.slidesLen;
+            this.sliderWrap.style.transform = `translateX(-${this.slideWidth * this.currentIndex}px)`;
+          }
+    }
 
-  btnNext.addEventListener("click", () => {
-    if (currentIndex >= slides.length + 1) return;
-    moveToIndex(currentIndex + 1);
-  });
-});
+    prevSlide() {
+        if (this.currentIndex <= 0) return;
+        this.moveToIndex(this.currentIndex - 1);
+        this.sliderWrap.addEventListener("transitionend", this.handleTransitionEnd.bind(this));
+    }
+    nextSlide() {
+        if (this.currentIndex >= this.slidesLen + 1) return;
+        this.moveToIndex(this.currentIndex + 1);
+        this.sliderWrap.addEventListener("transitionend", this.handleTransitionEnd.bind(this));
+    }
+}
+
+const burg = new BurgerMenu();
+const slide = new Slider();

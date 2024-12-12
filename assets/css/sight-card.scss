@@ -410,6 +410,7 @@ li {
         overflow: hidden;
         border-radius: 15px;
         flex-direction: row;
+        cursor: pointer;
 
         @media (max-width:768px) {
             width: 100%;
@@ -473,9 +474,11 @@ li {
             flex-direction: row;
             border-radius: 15px;
             transition: transform 0.5s ease-in-out;
+
             @media (max-width: 768px) {
                 padding: 0;
             }
+            
 
             &-pic {
                 width: 100%;
@@ -506,6 +509,53 @@ li {
 
         @media (max-width:768px) {
             padding: 0 10px;
+        }
+    }
+}
+
+.gallery {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    
+    &__wrap {
+        display: flex;
+        transform: translateX();
+    }
+
+    &__slide {
+        width: 60vw;
+        overflow: hidden;
+    }
+
+    &__img {
+        min-width: 60vw;
+        max-width: 60vw;
+        height: auto;
+        object-fit: cover;
+    }
+
+    &__btn {
+        width: 40px;
+        height: 40px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 300;
+        
+        &:first-child {
+            background: url(../img/arrow-left.svg) no-repeat center center / cover;
+        }
+
+        &:last-child {
+            background: url(../img/arrow-right.svg) no-repeat center center / cover;
         }
     }
 }
@@ -561,6 +611,7 @@ li {
 #back {
     display: none;
     position: fixed;
+    overflow:hidden;
     top: 0;
     right: 0;
     width: 100vw;

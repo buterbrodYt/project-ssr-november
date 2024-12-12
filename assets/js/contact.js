@@ -1,51 +1,49 @@
-// Бургер
-
-document.getElementById("burgerIcon").addEventListener("click", function () {
-  const menuItems = document.getElementById("menuItems");
-  const burgerIcon = document.getElementById("burgerIcon");
-
-  if (menuItems.classList.contains("open")) {
-    menuItems.classList.remove("open");
-    burgerIcon.classList.remove("open");
-  } else {
-    menuItems.classList.add("open");
-    burgerIcon.classList.add("open");
-  }
-});
+class BurgerMenu {
+    constructor() {
+      this.burgerIcon = document.getElementById("burgerIcon");
+      this.menuItems = document.getElementById("menuItems");
+    }
+  
+    listener() {
+      if (this.menuItems.classList.contains("open")) {
+        this.menuItems.classList.remove("open");
+        this.burgerIcon.classList.remove("open");
+      } else {
+        this.menuItems.classList.add("open");
+        this.burgerIcon.classList.add("open");
+      }
+    }
+}
 
 // Модальное окно с формой
+class Modal {
+    constructor() {
+        this.name = document.getElementById("name").value = localStorage.getItem("name") || "";
+        this.phone = document.getElementById("phone").value = localStorage.getItem("phone") || "";
+        this.modal = document.getElementById("modal");
+        this.message = document.getElementById("message").value;
+    }
 
-document.getElementById("openModalBtn").addEventListener("click", function () {
-  document.getElementById("name").value = localStorage.getItem("name") || "";
-  document.getElementById("phone").value = localStorage.getItem("phone") || "";
-  document.getElementById("modal").style.display = "block";
-  document.getElementById("modal").style.animation = "fadeIn 0.5s ease"
-});
+    openModal() {
+        this.name = localStorage.getItem("name") || "";
+        this.phone = localStorage.getItem("phone") || "";
+        this.modal.style.display = "block";
+        this.modal.style.animation = "fadeIn 0.5s ease"
+    }
 
-document
-  .getElementsByClassName("close")[0]
-  .addEventListener("click", function () {
-    document.getElementById("modal").style.display = "none";
-  });
+    closeModal() {
+        this.modal.style.display = "none";
+    }
 
-window.addEventListener("click", function (event) {
-  if (event.target == document.getElementById("modal")) {
-    document.getElementById("modal").style.display = "none";
-  }
-});
+    sumbitModal() {
+        localStorage.setItem("name", this.name);
+        localStorage.setItem("phone", this.phone);
 
-document
-  .getElementById("modal__Form")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
-    const message = document.getElementById("message").value;
+        console.log("Имя:", this.name, "Телефон:", this.phone, "Сообщение:", this.message);
 
-    localStorage.setItem("name", name);
-    localStorage.setItem("phone", phone);
+        this.modal.style.display = "none";
+    }
+}
 
-    console.log("Имя:", name, "Телефон:", phone, "Сообщение:", message);
-
-    document.getElementById("modal").style.display = "none";
-  });
+const modal = new Modal();
+const burg = new BurgerMenu();
