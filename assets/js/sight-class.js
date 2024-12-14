@@ -17,52 +17,29 @@ class BurgerMenu {
 }
 
 class DisplayingSight {
-  constructor(data,allData) {
-    this.url = new URL(
-      "https://67266547302d03037e6d6bc0.mockapi.io/v1/sight-card"
-    );
-    this.allSightURL = new URL(
-      "https://67266547302d03037e6d6bc0.mockapi.io/v1/sight-card"
-    );
-    this.Data = data;
-    this.allData = allData;
-    this.totalPages = Math.ceil(this.allData/this.itemsPerPage);
+  constructor(fetch) {
+    this.fetch = fetch;
+    this.Data = [];
+    this.allData = [];
     this.itemsPerPage = 9;
+    this.totalPages;
   }
 
-  updateParams() {
-    this.currentPage = parseInt(localStorage.getItem("savedPage")) || 1;
-    this.searchTerm = localStorage.getItem("savedSearch") || "";
-    this.selectedCategory = localStorage.getItem("savedCategory") || "";
-    this.selectedSort = localStorage.getItem("savedSort") || "";
-    this.selectedOrder = localStorage.getItem("savedOrder") || "";
-    if (this.selectedCategory == "all") {
-      this.selectedCategory = "";
-    }
-    if (this.selectedSort == "none") {
-      this.selectedSort = "";
-    }
-
-    this.url.searchParams.set("limit", this.itemsPerPage);
-    this.url.searchParams.set("page", this.currentPage);
-    this.url.searchParams.set("title", this.searchTerm);
-    this.url.searchParams.set("sortBy", this.selectedSort);
-    this.url.searchParams.set("order", this.selectedOrder);
-    this.allSightURL.searchParams.set("title", this.searchTerm);
-    this.url.searchParams.set("category", this.selectedCategory);
-    this.allSightURL.searchParams.set("category", this.selectedCategory);
+  async updateData() {
+    await this.fetch.fetchData();
+    await this.fetch.fetchAllData();
+    this.Data = this.fetch.data;
+    this.allData = this.fetch.allData;
+    this.totalPages = Math.ceil(this.allData.length / this.itemsPerPage);
+    this.displayData();
   }
 
-  get pages() {
-    return this.totalPages;
-  }
-
-  displayData(data) {
+  displayData() {
     const sight = document.getElementById("data_container");
     sight.innerHTML = "";
-
-    if (data.length > 0) {
-      data.forEach((item) => {
+    console.log(this.Data);
+    if (this.Data) {
+      this.Data.forEach((item) => {
         const card = document.createElement("li");
         card.classList.add("sight__items-item");
         card.setAttribute("data-category", item.category);
@@ -147,15 +124,15 @@ class DisplayingSight {
 }
 
 class SearchFilterSort {
-  constructor(obj,loader) {
+  constructor(serv, loader) {
     this.searchTerm = localStorage.getItem("savedSearch") || "";
     this.selectedCategory = localStorage.getItem("savedCategory") || "";
     this.selectedSort = localStorage.getItem("savedSort") || "";
-    this.fetch = obj;
+    this.serv = serv;
     this.loader = loader;
   }
 
-  filteringAndSearching() {
+  async filteringAndSearching() {
     this.loader.showLoader();
     const searchInput = document.getElementById("search__input");
     const categorySelect = document.getElementById("category__select");
@@ -164,6 +141,7 @@ class SearchFilterSort {
     this.selectedCategory = categorySelect.value;
     this.selectedSort = sortSelect.value;
     this.currentPage = 1;
+
     if (this.selectedCategory == "all") {
       localStorage.setItem("savedCategory", "");
     } else {
@@ -194,8 +172,10 @@ class SearchFilterSort {
 
     localStorage.setItem("savedSearch", this.searchTerm);
     localStorage.setItem("savedPage", this.currentPage);
-    this.fetch.fetchData();
-    this.loader.listener();
+
+    await this.serv.updateData();
+
+    this.loader.hideLoader();
   }
 
   displayMenu() {
@@ -218,14 +198,16 @@ class SearchFilterSort {
 }
 
 class Pagination {
-  constructor(obj, loader) {
+  constructor(serv, loader) {
     this.currentPage = parseInt(localStorage.getItem("savedPage")) || 1;
-    this.obj = obj;
-    this.totalPages = this.obj.pages;
+    this.serv = serv;
+    this.totalPages;
     this.loader = loader;
   }
 
-  updatePagination() {
+  async updatePagination() {
+    await this.serv.updateData();
+    this.totalPages = this.serv.totalPages;
     const firstPage = document.getElementById("firstPage");
     const page1 = document.getElementById("nowPage-1");
     const nowPage = document.getElementById("nowPage");
@@ -250,39 +232,42 @@ class Pagination {
       page2.style.display = "none";
       lastPage.disabled = true;
     }
-    this.loader.listener();
   }
 
-  firstPage() {
+  async firstPage() {
     this.currentPage = 1;
     localStorage.setItem("savedPage", this.currentPage);
     this.loader.showLoader();
     this.updatePagination();
-    this.obj.fetchData();
+    await this.serv.updateData();
+    this.loader.hideLoader();
   }
 
-  prevPage() {
+  async prevPage() {
     this.currentPage--;
     localStorage.setItem("savedPage", this.currentPage);
     this.loader.showLoader();
     this.updatePagination();
-    this.obj.fetchData();
+    await this.serv.updateData();
+    this.loader.hideLoader();
   }
 
-  nextPage() {
+  async nextPage() {
     this.currentPage++;
     localStorage.setItem("savedPage", this.currentPage);
     this.loader.showLoader();
     this.updatePagination();
-    this.obj.fetchData();
+    await this.serv.updateData();
+    this.loader.hideLoader();
   }
 
-  lastPage() {
+  async lastPage() {
     this.currentPage = this.totalPages;
     localStorage.setItem("savedPage", this.currentPage);
     this.loader.showLoader();
     this.updatePagination();
-    this.obj.fetchData();
+    await this.serv.updateData();
+    this.loader.hideLoader();
   }
 }
 
@@ -290,14 +275,6 @@ class Loader {
   constructor() {
     this.preloader = document.getElementById("loader");
     this.bg = document.getElementById("loading");
-  }
-
-  listener() {
-    if (window.onload) {
-      this.showLoader();
-    } else {
-      this.hideLoader();
-    }
   }
 
   showLoader() {
@@ -317,16 +294,17 @@ class Loader {
   }
 }
 
-let search
-let pag
-let serv
-const fetch = new Fetch();
-const load = new Loader();
-load.listener();
-const burg = new BurgerMenu();
-serv = new DisplayingSight(fetch.Data(),fetch.AllData());
-pag = new Pagination(serv, load);
-pag.updatePagination();
-search = new SearchFilterSort(serv,load);
-search.displayMenu();
 
+const fetch = new Fetch();
+const burg = new BurgerMenu();
+const load = new Loader();
+load.showLoader();
+const serv = new DisplayingSight(fetch);
+serv.updateData();
+const pag = new Pagination(serv, load);
+pag.updatePagination();
+window.pag = pag;
+const search = new SearchFilterSort(serv, load);
+search.filteringAndSearching();
+search.displayMenu();
+window.search = search;
