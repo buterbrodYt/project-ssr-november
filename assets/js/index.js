@@ -14,7 +14,7 @@ class BurgerMenu {
         this.burgerIcon.classList.add("open");
       }
     }
-  }
+}
 
 // Бесконечный слайдер
 

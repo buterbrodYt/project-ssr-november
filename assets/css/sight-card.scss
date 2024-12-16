@@ -441,6 +441,7 @@ li {
 
             @media (max-width:768px) {
                 flex-direction: column;
+                gap: 0px;
             }
         }
     }
@@ -466,16 +467,28 @@ li {
             margin-bottom: 50px;
             padding: 50px;
 
+            @media (max-width:768px) {
+                padding: 20px;
+                border-radius: 30px;
+            }
+
             &-block {
                 display: flex;
                 align-items: center;
                 gap: 100px;
                 margin-bottom: 25px;
+
+                @media (max-width:768px) {
+                    flex-direction: column;
+                    width: 100%;
+                    gap: 50px;
+                }
             }
 
             &-name {
                 font-size: 32px;
                 font-weight: 700;
+                word-break: break-all;
             }
 
             &-rating {
@@ -485,10 +498,19 @@ li {
                 margin-top: -50px;
                 font-size: 60px;
                 font-weight: 700;
+                word-break: break-all;
+
+                @media (max-width:768px) {
+                    margin-bottom: 25px;
+                    font-size: 50px;
+                }
             }
 
             &-description {
                 font-size: 20px;
+                width: 100%;
+                text-align: center;
+                word-break: break-all;
             }
         }
 
@@ -507,6 +529,10 @@ li {
             padding: 20px;
             border-radius: 25px;
             background-color: #ddd;
+
+            @media (max-width:768px) {
+                width: 80%;
+            }
 
             &-back {
                 display: none;

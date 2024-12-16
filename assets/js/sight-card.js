@@ -100,7 +100,7 @@ class DisplayingServer {
 
 
   async addReview() {
-    if (document.getElementById("reviewsName").value == "" || document.getElementById("reviewsRating").value > 6 || document.getElementById("reviewsRating").value < 1 || document.getElementById("reviewsDescription") == "") {
+    if (document.getElementById("reviewsName").value == "" || document.getElementById("reviewsRating").value > 5 || document.getElementById("reviewsRating").value < 1 || document.getElementById("reviewsDescription") == "") {
         alert('Данные не верны')
     } else {
         this.loader.showLoader();

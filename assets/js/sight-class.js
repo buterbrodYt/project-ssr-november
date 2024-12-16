@@ -41,7 +41,6 @@ class DisplayingSight {
   displayData() {
     const sight = document.getElementById("data_container");
     sight.innerHTML = "";
-    console.log(this.Data);
     if (this.Data) {
       this.Data.forEach((item) => {
         const card = document.createElement("li");
@@ -197,7 +196,7 @@ class SearchFilterSort {
 
     localStorage.setItem("savedSearch", this.searchTerm);
     localStorage.setItem("savedPage", this.currentPage);
-
+    await this.pagination.firstPage();
     await this.pagination.updatePagination();
 
     this.loader.hideLoader();
@@ -349,8 +348,9 @@ serv.updateData();
 const pag = new Pagination(serv, load);
 pag.updatePagination();
 pag.updatePage();
-window.pag = pag;
 const search = new SearchFilterSort(serv, load, pag);
 search.filteringAndSearching();
 search.displayMenu();
+window.burg = burg;
+window.pag = pag;
 window.search = search;
