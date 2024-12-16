@@ -395,7 +395,6 @@ li {
 .sight__main-wrap {
   display: flex;
   flex-direction: column;
-  margin: 0px 50px;
   background-color: #d3e0ed;
   width: 100%;
   border-radius: 15px;
@@ -413,8 +412,124 @@ li {
   gap: 50px;
   margin-bottom: 50px;
 }
+@media (max-width: 768px) {
+  .sight__main-block {
+    flex-direction: column;
+  }
+}
 .sight__reviews {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  margin-top: 50px;
+}
+.sight__reviews-data {
+  width: 100%;
+}
+.sight__reviews-review {
+  width: 100%;
+  min-width: 200px;
+  background-color: #BEB4AA;
+  border-radius: 92px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  padding: 50px;
+}
+.sight__reviews-review-block {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+  margin-bottom: 25px;
+}
+.sight__reviews-review-name {
+  font-size: 32px;
+  font-weight: 700;
+}
+.sight__reviews-review-rating {
+  display: flex;
+  height: 50px;
+  color: gold;
+  margin-top: -50px;
+  font-size: 60px;
+  font-weight: 700;
+}
+.sight__reviews-review-description {
+  font-size: 20px;
+}
+.sight__reviews-title {
+  font-size: 32px;
+}
+.sight__reviews-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  gap: 50px;
+  width: 40%;
+  padding: 20px;
+  border-radius: 25px;
+  background-color: #ddd;
+}
+.sight__reviews-modal-back {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100vw;
+  height: 100vh;
+}
+.sight__reviews-modal-input {
+  width: 80%;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 15px;
+}
+.sight__reviews-modal-input:focus {
+  outline: none;
+}
+.sight__reviews-modal-textarea {
+  max-width: 100%;
+  width: 80%;
+  max-height: 300px;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 15px;
+}
+.sight__reviews-modal-textarea:focus {
+  outline: none;
+}
+.sight__reviews-modal-sumbit {
+  background-color: #06334b;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 15px;
+}
+.sight__reviews-modal-sumbit:focus {
+  outline: none;
+}
+.sight__reviews-modal-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #74839b;
+  color: #000;
+  align-self: flex-end;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  font-size: 60px;
+  border: none;
+  border-radius: 50%;
+}
+.sight__reviews-modal-btn:focus {
+  outline: none;
 }
 .sight__item {
   display: flex;
@@ -430,10 +545,10 @@ li {
   text-align: center;
 }
 .sight__item-text {
+  display: flex;
+  align-items: center;
   width: 25%;
-  margin-left: 100px;
-  margin-right: 100px;
-  padding: 10px;
+  padding: 20px;
   height: 100%;
   align-self: center;
   font-size: 20px;
@@ -479,7 +594,7 @@ li {
   text-align: center;
 }
 .sight__wrap {
-  width: 80%;
+  width: 100%;
   padding: 0 50px;
   display: flex;
   flex-direction: column;

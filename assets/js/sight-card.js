@@ -1,4 +1,5 @@
 import Fetch from "./fetch.js";
+import Reviews from "./reviews.js";
 
 // Бургер
 class BurgerMenu {
@@ -21,17 +22,17 @@ class BurgerMenu {
 // Отображение карточки
 
 class DisplayingServer {
-  constructor(fetch, loader) {
+  constructor(fetch, loader,review) {
+    this.id = localStorage.getItem("savedId");
+    this.url = new URL(`https://67266547302d03037e6d6bc0.mockapi.io/v1/sight-card/${this.id}`);
     this.fetch = fetch;
     this.loader = loader;
+    this.review = review;
     this.Data = [];
-    console.log(this.Data);
-    
   }
 
   async displayData() {
-    await this.fetch.fetchOneData();
-    this.Data = this.fetch.oneData;
+    this.Data = await this.fetch.fetchApi(this.url);
     console.log(this.Data);
     
     const title = document.getElementById("sight_title");
@@ -49,23 +50,31 @@ class DisplayingServer {
     const reviewContainer = document.getElementById("reviewsData");
 
     this.Data.reviews.forEach(review => {
+        console.log(review,"rec");
+        
         let reviews = document.createElement("div");
         reviews.classList.add("sight__reviews-review");
+
+        let reviewsBlock = document.createElement("div");
+        reviewsBlock.classList.add("sight__reviews-review-block");
+        reviews.appendChild(reviewsBlock);
 
         let name = document.createElement("p");
         name.textContent = review.name;
         name.classList.add("sight__reviews-review-name");
-        reviews.appendChild(name)
+        reviewsBlock.appendChild(name)
 
         let rating = document.createElement("p");
         rating.classList.add("sight__reviews-review-rating");
-        rating.textContent = ("&starf;"*review.rating);
-        reviews.appendChild(rating);
+        const ratingText = "★ ";
+        rating.textContent = (ratingText.repeat(review.rating));
+        reviewsBlock.appendChild(rating);
 
         let description = document.createElement("p");
         description.classList.add("sight__reviews-review-description");
         description.textContent = review.description;
-        review.appendChild(description);
+        reviews.appendChild(description);
+        reviewContainer.appendChild(reviews);
     })
 
     const images = document.getElementById("sight__img");
@@ -84,7 +93,20 @@ class DisplayingServer {
     const map = document.getElementById("map");
     map.src = this.Data.map;
 
+    this.reviews = this.Data.reviews || [];
+    
     this.loader.hideLoader();
+  }
+
+
+  async addReview() {
+    if (document.getElementById("reviewsName").value == "" || document.getElementById("reviewsRating").value > 6 || document.getElementById("reviewsRating").value < 1 || document.getElementById("reviewsDescription") == "") {
+        alert('Данные не верны')
+    } else {
+        this.loader.showLoader();
+        await this.review.uploadReview(this.url, this.reviews);
+        location.reload();
+    }
   }
 }
 
@@ -109,7 +131,7 @@ class Loader {
       setTimeout(() => {
         this.preloader.classList.add("loader-hidden");
         this.bg.classList.add("loader-hidden");
-      }, 1000);
+      }, 0);
     }
   }
 
@@ -165,7 +187,6 @@ class Gallery {
         this.gallery.style.display = "flex"
         this.close.style.display = "block";
         document.body.style.overflow = "hidden";
-        console.log('123');
     }
 
     prevSlide() {
@@ -187,13 +208,17 @@ class Gallery {
     }
 }
 const fetch = new Fetch();
+const review = new Reviews(fetch);
 const load = new Loader();
 load.showLoader();
-const display = new DisplayingServer(fetch,load);
+const display = new DisplayingServer(fetch,load,review);
 display.displayData();
 const burg = new BurgerMenu();
 const gall = new Gallery();
 const map = new YMap();
+
+window.review = review;
+window.display = display;
 window.burg = burg;
 window.gall = gall;
 window.map = map;

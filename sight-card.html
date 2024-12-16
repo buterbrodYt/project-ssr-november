@@ -82,19 +82,17 @@
                         <hr/>
                         <div class="sight__reviews">
                             <p class="sight__reviews-title">Отзывы</p>
-                            <form class="sight__reviews-add">
-                                <input type="text" id="reviewsName" placeholder="Введите имя" required>
-                                <input type="number" id="reviewsRating" placeholder="Введите рейтинг" required>
-                                <textarea id="reviewsDescription" placeholder="Введите описание" required></textarea>
-                                <button type="submit">Отправить</button>
-                            </form>
-                            <div class="sight__reviews-data" id="reviewsData">
-                                <div class="sight__reviews-review">
-                                    <p class="sight__reviews-review-name">Vilen Lox</p>
-                                    <p class="sight__reviews-review-rating">&starf;</p>
-                                    <p class="sight__reviews-review-description">1241</p>
+                            <button class="sight__reviews-modal-btn" onclick="review.reviewOpen()">+</button>
+                            <div class="sight__reviews-modal-back" id="modalBack">
+                                <div class="sight__reviews-modal" id="modalReview">
+                                    <h1>Оставьте отзыв</h1>
+                                    <input class="sight__reviews-modal-input" type="text" id="reviewsName" placeholder="Введите имя" required>
+                                    <input class="sight__reviews-modal-input" type="number" id="reviewsRating" placeholder="Введите рейтинг (от 1 до 5)" required min="1" max="5">
+                                    <textarea class="sight__reviews-modal-textarea" id="reviewsDescription" placeholder="Введите описание" required></textarea>
+                                    <button class="sight__reviews-modal-sumbit" type="submit" id="reviewsSubmit" onclick="display.addReview()">Отправить</button>
                                 </div>
                             </div>
+                            <div class="sight__reviews-data" id="reviewsData"></div>
                         </div>
                     </div>
                     <div class="sight__item-adress">

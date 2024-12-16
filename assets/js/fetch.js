@@ -1,8 +1,5 @@
 export default class Fetch {
-  constructor() {
-    this.id = localStorage.getItem("savedId");
-    this.BASE_URL = "https://67266547302d03037e6d6bc0.mockapi.io/v1/";
-  }
+  constructor() {}
 
   async fetchApi(url) {
     try {
@@ -16,20 +13,20 @@ export default class Fetch {
     }
   }
 
-  async fetchPOST() {
-    
-  }
-}
-async function updateSightCard(id, updatedData) {
-    const response = await fetch(`${apiUrl}/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(updatedData)
-    });
-    if (!response.ok) {
-      throw new Error('Ошибка при обновлении данных');
+  async fetchPUT(url, data) {
+    try {
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (!response.ok) {
+        throw new Error("Ошибка сети");
+      }
+      return await response.json();
+    } catch (error) {
+      throw new Error("Ошибка при обновлении данных:", error);
     }
-    return await response.json();
+  }
+
 }
