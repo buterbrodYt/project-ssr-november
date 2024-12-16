@@ -148,20 +148,21 @@ class DisplayingSight {
 
 //Фильтрация
 class SearchFilterSort {
-  constructor(serv, loader) {
+  constructor(serv, loader, pag) {
     this.searchTerm = localStorage.getItem("savedSearch") || "";
     this.selectedCategory = localStorage.getItem("savedCategory") || "";
     this.selectedSort = localStorage.getItem("savedSort") || "";
     this.serv = serv;
     this.loader = loader;
+    this.pagination = pag;
   }
 
   async filteringAndSearching() {
     this.loader.showLoader();
-    const searchInput = document.getElementById("search__input");
+    this.searchInput = document.getElementById("search__input");
     const categorySelect = document.getElementById("category__select");
     const sortSelect = document.getElementById("sorting__select");
-    this.searchTerm = searchInput.value.toLowerCase();
+    this.searchTerm = this.searchInput.value.toLowerCase();
     this.selectedCategory = categorySelect.value;
     this.selectedSort = sortSelect.value;
     this.currentPage = 1;
@@ -197,9 +198,19 @@ class SearchFilterSort {
     localStorage.setItem("savedSearch", this.searchTerm);
     localStorage.setItem("savedPage", this.currentPage);
 
-    await this.serv.updateData();
+    await this.pagination.updatePagination();
 
     this.loader.hideLoader();
+  }
+
+  debounce(func, delay) { 
+    let timeoutId; 
+    return function (...args) { 
+        if (timeoutId) { clearTimeout(timeoutId); } 
+        timeoutId = setTimeout(() => { 
+            func.apply(this, args);
+        }, delay); 
+    }; 
   }
 
   displayMenu() {
@@ -218,6 +229,11 @@ class SearchFilterSort {
         c--;
       }
     });
+
+    this.searchInput.addEventListener("input",this.debounce(() => {
+        this.filteringAndSearching();
+      }, 1000)
+    );
   }
 }
 
@@ -334,7 +350,7 @@ const pag = new Pagination(serv, load);
 pag.updatePagination();
 pag.updatePage();
 window.pag = pag;
-const search = new SearchFilterSort(serv, load);
+const search = new SearchFilterSort(serv, load, pag);
 search.filteringAndSearching();
 search.displayMenu();
 window.search = search;
