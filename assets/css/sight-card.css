@@ -394,7 +394,7 @@ li {
 }
 .sight__main-wrap {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin: 0px 50px;
   background-color: #d3e0ed;
   width: 100%;
@@ -406,6 +406,15 @@ li {
     flex-direction: column;
     margin: 0 10px;
   }
+}
+.sight__main-block {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  margin-bottom: 50px;
+}
+.sight__reviews {
+  text-align: center;
 }
 .sight__item {
   display: flex;
@@ -578,7 +587,7 @@ li {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-#close {
+#mapClose, #gallClose {
   display: none;
   top: 50px;
   right: 2%;
@@ -592,7 +601,7 @@ li {
   z-index: 10;
 }
 @media (max-width: 426px) {
-  #close {
+  #mapClose, #gallClose {
     top: 0px;
   }
 }

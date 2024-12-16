@@ -1,4 +1,6 @@
 import Fetch from "./fetch.js";
+
+//Бургер
 class BurgerMenu {
   constructor() {
     this.burgerIcon = document.getElementById("burgerIcon");
@@ -16,8 +18,11 @@ class BurgerMenu {
   }
 }
 
+//Отображение карточек
 class DisplayingSight {
   constructor(fetch) {
+    this.Url = new URL("https://67266547302d03037e6d6bc0.mockapi.io/v1/sight-card");
+    this.UrlOfAll = new URL("https://67266547302d03037e6d6bc0.mockapi.io/v1/sight-card");
     this.fetch = fetch;
     this.Data = [];
     this.allData = [];
@@ -26,10 +31,9 @@ class DisplayingSight {
   }
 
   async updateData() {
-    await this.fetch.fetchData();
-    await this.fetch.fetchAllData();
-    this.Data = this.fetch.data;
-    this.allData = this.fetch.allData;
+    this.updateSearchParams();
+    this.Data = await this.fetch.fetchApi(this.Url);
+    this.allData = await this.fetch.fetchApi(this.UrlOfAll);
     this.totalPages = Math.ceil(this.allData.length / this.itemsPerPage);
     this.displayData();
   }
@@ -93,6 +97,24 @@ class DisplayingSight {
     });
   }
 
+  updateSearchParams() {
+    let category = localStorage.getItem("savedCategory") || "";
+    let search = localStorage.getItem("savedSearch") || "";
+    let sort = localStorage.getItem("savedSort") || "";
+    let order = localStorage.getItem("savedOrder") || "";
+    let page = localStorage.getItem("savedPage") || "";
+
+    this.Url.searchParams.set("limit", this.itemsPerPage);
+    this.Url.searchParams.set("page", page);
+    this.Url.searchParams.set("title", search);
+    this.Url.searchParams.set("sortBy", sort);
+    this.Url.searchParams.set("order", order);
+    this.Url.searchParams.set("category", category);
+
+    this.UrlOfAll.searchParams.set("title", search);
+    this.UrlOfAll.searchParams.set("category", category)
+  }
+
   unknownSearchQuery() {
     const sight = document.getElementById("data_container");
     sight.innerHTML = "";
@@ -123,6 +145,8 @@ class DisplayingSight {
   }
 }
 
+
+//Фильтрация
 class SearchFilterSort {
   constructor(serv, loader) {
     this.searchTerm = localStorage.getItem("savedSearch") || "";
@@ -197,6 +221,7 @@ class SearchFilterSort {
   }
 }
 
+//Пагинация
 class Pagination {
   constructor(serv, loader) {
     this.currentPage = parseInt(localStorage.getItem("savedPage")) || 1;
@@ -234,43 +259,48 @@ class Pagination {
     }
   }
 
-  async firstPage() {
+  updatePage() {
+    document.getElementById("search__submit").addEventListener("click", () => {
+      this.currentPage = 1;
+      localStorage.setItem("savedPage", this.currentPage);
+      this.updatePagination();
+    });
+  }
+
+  firstPage() {
     this.currentPage = 1;
     localStorage.setItem("savedPage", this.currentPage);
     this.loader.showLoader();
     this.updatePagination();
-    await this.serv.updateData();
     this.loader.hideLoader();
   }
 
-  async prevPage() {
+  prevPage() {
     this.currentPage--;
     localStorage.setItem("savedPage", this.currentPage);
     this.loader.showLoader();
     this.updatePagination();
-    await this.serv.updateData();
     this.loader.hideLoader();
   }
 
-  async nextPage() {
+  nextPage() {
     this.currentPage++;
     localStorage.setItem("savedPage", this.currentPage);
     this.loader.showLoader();
     this.updatePagination();
-    await this.serv.updateData();
     this.loader.hideLoader();
   }
 
-  async lastPage() {
+  lastPage() {
     this.currentPage = this.totalPages;
     localStorage.setItem("savedPage", this.currentPage);
     this.loader.showLoader();
     this.updatePagination();
-    await this.serv.updateData();
     this.loader.hideLoader();
   }
 }
 
+//Лоадер
 class Loader {
   constructor() {
     this.preloader = document.getElementById("loader");
@@ -294,7 +324,6 @@ class Loader {
   }
 }
 
-
 const fetch = new Fetch();
 const burg = new BurgerMenu();
 const load = new Loader();
@@ -303,6 +332,7 @@ const serv = new DisplayingSight(fetch);
 serv.updateData();
 const pag = new Pagination(serv, load);
 pag.updatePagination();
+pag.updatePage();
 window.pag = pag;
 const search = new SearchFilterSort(serv, load);
 search.filteringAndSearching();

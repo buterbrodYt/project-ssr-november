@@ -421,7 +421,7 @@ li {
     &__main {
         &-wrap {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             margin: 0px 50px;
             background-color: $block_color;
             width: 100%;
@@ -433,6 +433,17 @@ li {
                 margin: 0 10px;
             }
         }
+
+        &-block {
+            display: flex;
+            flex-direction: row;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+    }
+
+    &__reviews {
+        text-align: center;
     }
 
     &__item {
@@ -478,7 +489,6 @@ li {
             @media (max-width: 768px) {
                 padding: 0;
             }
-            
 
             &-pic {
                 width: 100%;
@@ -618,7 +628,7 @@ li {
     height: 150vh;
     background-color: rgba(0, 0, 0, 0.6);
 }
-#close {
+#mapClose, #gallClose {
     display: none;
     top: 50px;
     right: 2%;

@@ -1,3 +1,4 @@
+//Бургер
 class BurgerMenu {
     constructor() {
       this.burgerIcon = document.getElementById("burgerIcon");
@@ -15,7 +16,8 @@ class BurgerMenu {
     }
 }
 
-// Модальное окно с формой
+// Модальное окно
+
 class Modal {
     constructor() {
         this.name = document.getElementById("name").value = localStorage.getItem("name") || "";

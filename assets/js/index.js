@@ -1,3 +1,4 @@
+// Бургер
 class BurgerMenu {
     constructor() {
       this.burgerIcon = document.getElementById("burgerIcon");
@@ -13,7 +14,7 @@ class BurgerMenu {
         this.burgerIcon.classList.add("open");
       }
     }
-}
+  }
 
 // Бесконечный слайдер
 

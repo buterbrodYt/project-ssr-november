@@ -17,7 +17,11 @@
 </head>
 <body>
     <div id="back"></div>
-    <button id="close" onclick="gall.closeGallery()">
+    <button id="gallClose" onclick="gall.closeGallery()">
+        <div class="closes"></div>
+        <div class="closes"></div>
+    </button>
+    <button id="mapClose" onclick="map.close()">
         <div class="closes"></div>
         <div class="closes"></div>
     </button>
@@ -69,10 +73,29 @@
                         <p id="sight_title"></p>
                     </div>
                     <div class="sight__main-wrap">
-                        <div class="sight__item-text">
-                            <p id="sight_text"></p>
+                        <div class="sight__main-block">
+                            <div class="sight__item-text">
+                                <p id="sight_text"></p>
+                            </div>
+                            <div id="sight__img" class="sight__img" onclick="gall.openGallery()"></div>
                         </div>
-                        <div id="sight__img" class="sight__img" onclick="gall.openGallery()"></div>
+                        <hr/>
+                        <div class="sight__reviews">
+                            <p class="sight__reviews-title">Отзывы</p>
+                            <form class="sight__reviews-add">
+                                <input type="text" id="reviewsName" placeholder="Введите имя" required>
+                                <input type="number" id="reviewsRating" placeholder="Введите рейтинг" required>
+                                <textarea id="reviewsDescription" placeholder="Введите описание" required></textarea>
+                                <button type="submit">Отправить</button>
+                            </form>
+                            <div class="sight__reviews-data" id="reviewsData">
+                                <div class="sight__reviews-review">
+                                    <p class="sight__reviews-review-name">Vilen Lox</p>
+                                    <p class="sight__reviews-review-rating">&starf;</p>
+                                    <p class="sight__reviews-review-description">1241</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="sight__item-adress">
                         <p id="sight_adress"></p>
@@ -80,10 +103,11 @@
                 </div>
             </li>
         </ul>
+
     </section>
     <section class="map">
         <div>
-            <button id="map_btton" class="map__btn">Показать карту</button>
+            <button id="map_btton" class="map__btn" onclick="map.open()">Показать карту</button>
         </div>
         <div id="map_yandex" class="map__yandex">
             <div class="map__yandex-back"></div>
