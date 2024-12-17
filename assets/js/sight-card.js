@@ -131,7 +131,7 @@ class Loader {
       setTimeout(() => {
         this.preloader.classList.add("loader-hidden");
         this.bg.classList.add("loader-hidden");
-      }, 0);
+      }, 1000);
     }
   }
 
@@ -139,7 +139,6 @@ class Loader {
 class YMap {
     constructor() {
         this.map = document.getElementById("map_yandex");
-        this.mapClose = document.getElementById("mapClose");
         this.back = document.getElementById("back");
     }
 
@@ -148,15 +147,18 @@ class YMap {
         this.map.style.animation = "fade 1s ease";
         this.back.style.display = "block";
         this.back.style.animation = "fade 1s ease";
-        this.mapClose.style.display = "block";
-        this.mapClose.style.animation = "fade 1s ease";
         document.body.style.overflow = "hidden";
+
+        window.addEventListener("click",(event) => {
+            if (event.target === this.back) {
+                this.close();
+            }
+        }) 
     }
 
     close() {
         this.map.style.display = "none";
         this.back.style.display = "none";
-        this.mapClose.style.display = "none";
         document.body.style.overflow = "visible";
     }
 }
@@ -165,7 +167,6 @@ class Gallery {
     constructor() {
         this.open = document.getElementById("sight__img");
         this.back = document.getElementById("back");
-        this.close = document.getElementById("gallClose");
         this.gallery = document.getElementById("gallery");
         
         this.sliderWrap = document.getElementById("sliderWrap");
@@ -177,7 +178,6 @@ class Gallery {
 
     closeGallery() {
         this.gallery.style.display = "none";
-        this.close.style.display = "none";
         this.back.style.display = "none";
         document.body.style.overflow = "visible";
     }
@@ -185,8 +185,13 @@ class Gallery {
     openGallery() {
         this.back.style.display = "block";
         this.gallery.style.display = "flex"
-        this.close.style.display = "block";
         document.body.style.overflow = "hidden";
+
+        window.addEventListener("click",(event) => {
+            if (event.target === this.gallery) {
+                this.closeGallery();
+            }
+        }) 
     }
 
     prevSlide() {

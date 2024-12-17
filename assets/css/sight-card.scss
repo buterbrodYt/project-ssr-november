@@ -309,83 +309,6 @@ li {
     }
 }
 
-.search {
-    margin: 30px 30% 50px 30%;
-    padding: 5px 0;
-    background-color: $block_color;
-    border-radius: 50px;
-
-    @media (max-width:900px) {
-        margin: 30px 10% 50px 10%;
-    }
-
-    &__wrap {
-        display: flex;
-        gap: 15px;
-        justify-content: center;
-    }
-
-    &__filter {
-        width: 40px;
-        height: 40px;
-        border: none;
-        box-shadow: none;
-        background: url(../img/filter_icon.svg) no-repeat center center / cover;
-        appearance: none;
-        color: transparent;
-        font-size: 16px;
-        font-weight: 500;
-
-        &:focus {
-            outline: none;
-        }
-        
-        &-opt {
-            color: $background_color;
-            background-color: $main_color;
-            font-size: 20px;
-            font-weight: 500;
-        }
-        
-    }
-
-    &__input {
-        height: 40px;
-        width: 80%;
-        border-radius: 30px;
-        background-color: $second_block_color;
-        color: $main_color;
-        padding: 15px;
-        font-size: 16px;
-        font-weight: 500;
-        border: none;
-
-        @media (max-width:1000px) {
-            width: 70%;
-        }
-
-        &::placeholder {
-            color: $main_color;
-        }
-
-        &::after {
-            content: '✕';
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #999;
-        }
-        
-
-        &:focus {
-            outline: none;
-        }
-
-    }
-}
-
 .sight {
     display: flex;
     flex-direction: column;
@@ -691,6 +614,7 @@ li {
     align-items: center;
     justify-content: center;
     gap: 25px;
+    z-index: 100;
     
     &__wrap {
         display: flex;
@@ -752,6 +676,7 @@ li {
         display: none;
         position: fixed;
         top: 0;
+        z-index: 100;
 
         @media (max-width:630px) {
             top: calc((100vh - 100vw)/4);
@@ -784,6 +709,7 @@ li {
     width: 100vw;
     height: 150vh;
     background-color: rgba(0, 0, 0, 0.6);
+    z-index: 99;
 }
 #mapClose, #gallClose {
     display: none;

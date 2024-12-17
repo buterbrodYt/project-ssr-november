@@ -307,6 +307,10 @@ li {
         gap: 15px;
         justify-content: center;
         align-items: center;
+
+        @media (max-width:768px) {
+            gap: 5px;
+        }
     }
 
     &__filter {
@@ -319,6 +323,11 @@ li {
         color: transparent;
         font-size: 16px;
         font-weight: 500;
+
+        @media (max-width:768px) {
+            width: 30px;
+            height: 30px;
+        }
 
         &:focus {
             outline: none;
@@ -344,6 +353,10 @@ li {
         align-items: center;
         width: 80%;
 
+        @media (max-width:768px) {
+            gap: 5px;
+        }
+
         &-input {
             height: 40px;
             width: 100%;
@@ -368,10 +381,15 @@ li {
         }
 
         &-sumbit {
-            background: url(../img/search_icon.svg) center center no-repeat;
+            background: url(../img/search_icon.svg) no-repeat center center / cover;
             border: none;
             width: 44px;
             height: 44px;
+
+            @media (max-width:768px) {
+                width: 40px;
+                height: 33px;
+            }
 
             &:hover {
                 cursor: pointer;
@@ -392,8 +410,19 @@ li {
         background-color: $block_color;
         border: #000 3px solid;
 
-        &-select {
+        @media (max-width:768px) {
+            width: 80%;
+            justify-content: center;
+            gap: 5px;
+            padding: 40px 20px;
+        }
+
+        &-select { 
             border: none;
+
+            @media (max-width:768px) {
+                width: 50%;
+            }
             &:focus {
                 outline: none;
             }
