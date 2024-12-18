@@ -430,6 +430,8 @@ li {
   width: 100%;
 }
 .sight__reviews-review {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   min-width: 200px;
   background-color: #BEB4AA;
@@ -456,6 +458,21 @@ li {
     width: 100%;
     gap: 50px;
   }
+}
+.sight__reviews-review-delete {
+  display: flex;
+  align-self: flex-end;
+  border: none;
+  width: 40px;
+  height: 40px;
+  background: url(../img/can.svg);
+  cursor: pointer;
+  border-radius: 10px;
+  transition: 1s;
+}
+.sight__reviews-review-delete:hover {
+  transition: 1s;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .sight__reviews-review-name {
   font-size: 32px;

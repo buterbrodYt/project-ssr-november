@@ -13,10 +13,10 @@ export default class Fetch {
     }
   }
 
-  async fetchPUT(url, data) {
+  async fetchPOST(url, data) {
     try {
       const response = await fetch(url, {
-        method: "PUT",
+        method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
@@ -27,6 +27,19 @@ export default class Fetch {
     } catch (error) {
       throw new Error("Ошибка при обновлении данных:", error);
     }
+  }
+
+  async fetchDelete(url) {
+    try {
+        const response = await fetch(url, {
+          method: "DELETE"
+        });
+        if (!response.ok) {
+          throw new Error("Ошибка сети");
+        }
+      } catch (error) {
+        throw new Error("Ошибка при обновлении данных:", error);
+      }
   }
 
 }
