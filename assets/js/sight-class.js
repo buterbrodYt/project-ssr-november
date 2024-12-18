@@ -251,7 +251,6 @@ class Pagination {
   }
 
   async updatePagination() {
-    await this.serv.updateData();
     this.totalPages = this.serv.totalPages;
     const firstPage = document.getElementById("firstPage");
     const page1 = document.getElementById("nowPage-1");
@@ -280,41 +279,46 @@ class Pagination {
   }
 
   updatePage() {
-    document.getElementById("search__submit").addEventListener("click", () => {
+    document.getElementById("search__submit").addEventListener("click", async () => {
       this.currentPage = 1;
       localStorage.setItem("savedPage", this.currentPage);
+      await this.serv.updateData();
       this.updatePagination();
     });
   }
 
-  firstPage() {
+  async firstPage() {
     this.currentPage = 1;
     localStorage.setItem("savedPage", this.currentPage);
     this.loader.showLoader();
+    await this.serv.updateData();
     this.updatePagination();
     this.loader.hideLoader();
   }
 
-  prevPage() {
+  async prevPage() {
     this.currentPage--;
     localStorage.setItem("savedPage", this.currentPage);
     this.loader.showLoader();
+    await this.serv.updateData();
     this.updatePagination();
     this.loader.hideLoader();
   }
 
-  nextPage() {
+  async nextPage() {
     this.currentPage++;
     localStorage.setItem("savedPage", this.currentPage);
     this.loader.showLoader();
+    await this.serv.updateData();
     this.updatePagination();
     this.loader.hideLoader();
   }
 
-  lastPage() {
+  async lastPage() {
     this.currentPage = this.totalPages;
     localStorage.setItem("savedPage", this.currentPage);
     this.loader.showLoader();
+    await this.serv.updateData();
     this.updatePagination();
     this.loader.hideLoader();
   }
@@ -349,7 +353,6 @@ const burg = new BurgerMenu();
 const load = new Loader();
 load.showLoader();
 const serv = new DisplayingSight(fetch);
-serv.updateData();
 const pag = new Pagination(serv, load);
 pag.updatePagination();
 pag.updatePage();
