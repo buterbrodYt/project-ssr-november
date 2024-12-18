@@ -31,6 +31,11 @@ class Modal {
         this.phone = localStorage.getItem("phone") || "";
         this.modal.style.display = "block";
         this.modal.style.animation = "fadeIn 0.5s ease"
+        window.addEventListener("click",(event) => {
+            if (event.target === this.modal) {
+                this.closeModal();
+            }
+        }) 
     }
 
     closeModal() {

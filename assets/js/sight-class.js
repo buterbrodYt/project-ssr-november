@@ -32,9 +32,14 @@ class DisplayingSight {
 
   async updateData() {
     this.updateSearchParams();
-    this.Data = await this.fetch.fetchApi(this.Url);
-    this.allData = await this.fetch.fetchApi(this.UrlOfAll);
-    this.totalPages = Math.ceil(this.allData.length / this.itemsPerPage);
+    try {
+        this.Data = await this.fetch.fetchApi(this.Url);
+        this.allData = await this.fetch.fetchApi(this.UrlOfAll);
+        this.totalPages = Math.ceil(this.allData.length / this.itemsPerPage);
+    } catch {
+        this.totalPages = 1;
+        this.unknownSearchQuery();
+    }
     this.displayData();
   }
 
