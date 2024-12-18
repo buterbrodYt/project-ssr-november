@@ -203,16 +203,16 @@ class SearchFilterSort {
     localStorage.setItem("savedPage", this.currentPage);
     await this.pagination.firstPage();
     await this.pagination.updatePagination();
-
-    this.loader.hideLoader();
+    console.log(1);
+    document.addEventListener("load",this.loader.hideLoader())
   }
 
-  debounce(func, delay) { 
-    let timeoutId; 
+  debounce(f, delay) { 
+    let timeoutId;
     return function (...args) { 
         if (timeoutId) { clearTimeout(timeoutId); } 
         timeoutId = setTimeout(() => { 
-            func.apply(this, args);
+            f.apply(this, args);
         }, delay); 
     }; 
   }
@@ -276,6 +276,8 @@ class Pagination {
       page2.style.display = "none";
       lastPage.disabled = true;
     }
+
+    document.addEventListener("load",this.loader.hideLoader());
   }
 
   updatePage() {
@@ -293,7 +295,6 @@ class Pagination {
     this.loader.showLoader();
     await this.serv.updateData();
     this.updatePagination();
-    this.loader.hideLoader();
   }
 
   async prevPage() {
@@ -302,7 +303,6 @@ class Pagination {
     this.loader.showLoader();
     await this.serv.updateData();
     this.updatePagination();
-    this.loader.hideLoader();
   }
 
   async nextPage() {
@@ -311,7 +311,6 @@ class Pagination {
     this.loader.showLoader();
     await this.serv.updateData();
     this.updatePagination();
-    this.loader.hideLoader();
   }
 
   async lastPage() {
@@ -320,7 +319,6 @@ class Pagination {
     this.loader.showLoader();
     await this.serv.updateData();
     this.updatePagination();
-    this.loader.hideLoader();
   }
 }
 
@@ -342,8 +340,8 @@ class Loader {
     this.preloader.classList.add("hide-loader");
     this.bg.classList.add("hide-loader");
     setTimeout(() => {
-      this.preloader.classList.add("loader-hidden");
-      this.bg.classList.add("loader-hidden");
+        this.preloader.classList.add("loader-hidden");
+        this.bg.classList.add("loader-hidden");
     }, 1000);
   }
 }

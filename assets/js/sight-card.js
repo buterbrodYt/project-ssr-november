@@ -65,7 +65,7 @@ class DisplayingServer {
     await this.review.displayReviews();
     this.review.reviewDelete();
     
-    this.loader.hideLoader();
+    document.addEventListener("load",this.loader.hideLoader())
   }
 
 
